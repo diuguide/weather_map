@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>Weather Map</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Daily Weather Map</h1>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col" id="clock"></div>
+        </div>
+        <div class="row">
+            <div class="col-4 border">
+                <div class="row p-3">
+                    <form>
+                        <input type="text" id="citySearch">
+                        <input type="button" value="Search" id="submit">
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-header">
+                            <h4>Current Conditions:</h4>
+                        </div>
+                        <div class="card-body" id="current">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-header">
+                            <h4>Five Day Forecast<span id="city"></span></h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <div class="card">
+                                        <div class="card-body" id="day1">
+                                            <p id="carddate1"></p>
+                                            <p id="cardtemp1"></p>
+                                            <p id="cardhumid1"></p>
+                                            <p id="cardcond1"></p>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="card">
+                                        <div class="card-body" id="day2">
+                                            <p id="carddate2"></p>
+                                            <p id="cardtemp2"></p>
+                                            <p id="cardhumid2"></p>
+                                            <p id="cardcond2"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="card">
+                                        <div class="card-body" id="day3">
+                                            <p id="carddate3"></p>
+                                            <p id="cardtemp3"></p>
+                                            <p id="cardhumid3"></p>
+                                            <p id="cardcond3"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="card">
+                                        <div class="card-body" id="day4">
+                                            <p id="carddate4"></p>
+                                            <p id="cardtemp4"></p>
+                                            <p id="cardhumid4"></p>
+                                            <p id="cardcond4"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <div class="card">
+                                        <div class="card-body" id="day5">
+                                            <p id="carddate5"></p>
+                                            <p id="cardtemp5"></p>
+                                            <p id="cardhumid5"></p>
+                                            <div id="cardcond5"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#submit').on('click', function () {
+
+            let currentEl = $('#current');
+            let day1 = $('#day1');
+            let day2 = $('#day2');
+            let day3 = $('#day3');
+            let day4 = $('#day4');
+            let day5 = $('#day5');
+            let temp = 0;
+            let lat = 0;
+            let lon = 0;
+
+            const cityName = $('#citySearch').val();
+            $('#carddate').val('');
+            $('#cardtemp').val('');
+            $('#cardhumid').val('');
+            $('#cardcond').val('');
+
+            $('#citySearch').val('');
+            currentEl.html('');
+            let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&units=imperial&appid=08bea1b85d0458c294c28493bcc4e4fe";
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+
+                console.log(response);
+                $('#city').html(': ' + response.name);
+                currentEl.append('<p>' + response.name + '</p>');
+                currentEl.append('<p>Tempurature: ' + response.main.temp + '</p>');
+                currentEl.append('<p>Humidity: ' + response.main.humidity + '%</p>');
+                currentEl.append('<p>Wind Speed: ' + response.wind.speed + ' mph</p>');
+                let iconurl = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+                currentEl.prepend('<img src=' + iconurl + '>');
+                lat = response.coord.lat;
+                lon = response.coord.lon;
+                let queryURL2 = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=08bea1b85d0458c294c28493bcc4e4fe";
+                $.ajax({
+                    url: queryURL2,
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(response);
+                    currentEl.append($('<p>').html('UV Index: ' + response.current.uvi).attr('id', 'uvIndex'));
+                    if (response.current.uvi > 11) {
+                        $('#uvIndex').css('background-color', 'red');
+                    }
+                    if (response.current.uvi < 10) {
+                        $('#uvIndex').css('background-color', 'green');
+                    }
+                    if (response.current.uvi >= 10 && response.current.uvi <= 11) {
+                        $('#uvIndex').css('background-color', 'yellow');
+                    }
+
+                    $('#carddate1').html('');
+                    $('#cardtemp1').html('');
+                    $('#cardhumid1').html('');
+                    $('#cardcond1').html('');
+                    $('#carddate2').html('');
+                    $('#cardtemp2').html('');
+                    $('#cardhumid2').html('');
+                    $('#cardcond2').html('');
+                    $('#carddate3').html('');
+                    $('#cardtemp3').html('');
+                    $('#cardhumid3').html('');
+                    $('#cardcond3').html('');
+                    $('#carddate4').html('');
+                    $('#cardtemp4').html('');
+                    $('#cardhumid4').html('');
+                    $('#cardcond4').html('');
+                    $('#carddate5').html('');
+                    $('#cardtemp5').html('');
+                    $('#cardhumid5').html('');
+                    $('#cardcond5').html('');
+
+                    for (let i = 1; i < 6; i++) {
+                        var hourString = i.toString();
+                        let day = moment.unix(response.daily[i].dt).format('MM-DD');
+
+                        $('#carddate' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html('<p>Date: ' + day + '</p>'));
+                        $('#cardtemp' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html('<p>Temp: ' + response.daily[i].temp.day + '</p>'));
+                        $('#cardhumid' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html('<p>Humidity: ' + response.daily[i].humidity + '%</p>'));
+                        $('#cardcond' + hourString).append($('<img>').addClass('row').attr("src", "http://openweathermap.org/img/w/" + response.daily[i].weather[0].icon + ".png").html('<img src="http://openweathermap.org/img/w/"' + response.daily[i].weather[0].icon + ".png"));
+                    }
+
+
+
+
+
+
+
+
+
+                });
+
+            });
+            $('#citySearch').val('');
+        });
+
+
+        function update() {
+            $('#clock').html(moment().format('MMMM D, YYYY H:mm:ss'));
+        }
+
+        setInterval(update, 1000);
+    </script>
+    <script src="moment.js"></script>
+</body>
+
+</html>
