@@ -142,11 +142,11 @@
                 currentEl.append('<p>Tempurature: ' + response.main.temp + '</p>');
                 currentEl.append('<p>Humidity: ' + response.main.humidity + '%</p>');
                 currentEl.append('<p>Wind Speed: ' + response.wind.speed + ' mph</p>');
-                let iconurl = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+                let iconurl = "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
                 currentEl.prepend('<img src=' + iconurl + '>');
                 lat = response.coord.lat;
                 lon = response.coord.lon;
-                let queryURL2 = "http://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=08bea1b85d0458c294c28493bcc4e4fe";
+                let queryURL2 = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=08bea1b85d0458c294c28493bcc4e4fe";
                 $.ajax({
                     url: queryURL2,
                     method: "GET"
