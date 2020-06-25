@@ -6,6 +6,6 @@ I used jquery, javascript, html, and css to create this file.  Using my experien
 
 Partial credit is owed to my classmates who met with me outside of class hours several times to work on this assignment together.  We gained a lot of expereince in group de-bugging.
 
-At this current time, the search history does not have any click listeners attatched to it, still trying to figure out how to dynamically create an event listener using the for loop.
+The search history does not have any click listeners attatched to it, still trying to figure out how to dynamically create an event listener using the for loop.
 
 <img src="screenshot.png">
