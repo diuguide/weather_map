@@ -13,22 +13,34 @@
 
 <body>
     <div class="container">
+
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h1 class="display-4">Daily Weather Map</h1>
             </div>
         </div>
+
         <div class="row m-1">
             <div class="col" id="clock"></div>
         </div>
         <div class="row">
-            <div class="col-4 border">
+            <div class="col-4 border" id="aside">
                 <div class="row p-3">
                     <form>
                         <input type="text" id="citySearch">
                         <input type="button" value="Search" id="submit">
                     </form>
                 </div>
+                <div class="row">
+                    <div class="card" style="width: 100%;">
+                        <div class="card-header" id="recentheader">
+                            <h4>Recent Search:</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container col-8">
                 <div class="row">
                     <div class="card" style="width: 100%;">
                         <div class="card-header">
@@ -39,8 +51,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col">
                 <div class="row">
                     <div class="card" style="width: 100%;">
                         <div class="card-header">
@@ -107,11 +117,14 @@
             </div>
         </div>
     </div>
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
-        $('#submit').on('click', function () {
 
+
+        $('#submit').on('click', function () {
+            const cityName = $('#citySearch').val();
             let currentEl = $('#current');
             let day1 = $('#day1');
             let day2 = $('#day2');
@@ -122,7 +135,12 @@
             let lat = 0;
             let lon = 0;
 
-            const cityName = $('#citySearch').val();
+
+            localStorage.setItem('recent', cityName);
+            recentsearch();
+
+
+
             $('#carddate').val('');
             $('#cardtemp').val('');
             $('#cardhumid').val('');
@@ -135,8 +153,6 @@
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
-
-                console.log(response);
                 $('#city').html(': ' + response.name);
                 currentEl.append('<p>' + response.name + '</p>');
                 currentEl.append('<p>Tempurature: ' + response.main.temp + '</p>');
@@ -151,7 +167,6 @@
                     url: queryURL2,
                     method: "GET"
                 }).then(function (response) {
-                    console.log(response);
                     currentEl.append($('<p>').html('UV Index: ' + response.current.uvi).attr('id', 'uvIndex'));
                     if (response.current.uvi > 11) {
                         $('#uvIndex').css('background-color', 'red');
@@ -186,9 +201,11 @@
 
                     for (let i = 1; i < 6; i++) {
                         var hourString = i.toString();
+
                         let day = moment.unix(response.daily[i].dt).format('MM-DD');
 
-                        $('#carddate' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html('<p>Date: ' + day + '</p>'));
+
+                        $('#carddate' + hourString).append($('<div>').addClass('row').html('<p>Date: ' + day + '</p>'));
                         $('#cardtemp' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html('<p>Temp: ' + response.daily[i].temp.day + '</p>'));
                         $('#cardhumid' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html('<p>Humidity: ' + response.daily[i].humidity + '%</p>'));
                         $('#cardcond' + hourString).append($('<img>').addClass('row').attr("src", "http://openweathermap.org/img/w/" + response.daily[i].weather[0].icon + ".png").html('<img src="http://openweathermap.org/img/w/"' + response.daily[i].weather[0].icon + ".png"));
@@ -207,7 +224,21 @@
             });
             $('#citySearch').val('');
         });
+        function recentsearch() {
+            const recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
+            const mostRecentSearch = localStorage.getItem('recent');
 
+            recentSearches.push(mostRecentSearch);
+            localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
+            console.log(recentSearches);
+            for (let i = 0; i < recentSearches.length; i++) {
+                let index = i;
+                $('#aside').append($('<div>').attr('id', 'mostRecent' + index).addClass('row border p-1').html('<p>' + recentSearches[i] + '</p>'));
+            }
+        }
+        function reSearch() {
+            alert('text');
+        }
 
         function update() {
             $('#clock').html(moment().format('MMMM D, YYYY H:mm:ss'));
