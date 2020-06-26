@@ -233,7 +233,7 @@
                     $('#lowerAside').append($('<div>').attr('id', 'mostRecent').addClass('row border p-1 recentSearch').html('<p>' + recentSearches[i] + '</p>'));
                 }
                 $('.recentSearch').on('click', function () {
-                    clearScreen();
+
                     if (recentSearches.length > 0) {
                         var cityName = recentSearches[recentSearches.length - 1];
                         $("#citySearch").val(cityName);
