@@ -8,4 +8,4 @@ Partial credit is owed to my classmates who met with me outside of class hours s
 
 I am still struggling with the search history printing results back to the page.
 
-<img src="screenshot.png">
+<img src="./images/screenshot.png">
