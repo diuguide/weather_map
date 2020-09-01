@@ -12,29 +12,32 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container mx-auto">
 
-        <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron jumbotron-fluid text-light border-rounded p-3 rounded" style="background-color: #023e8a;">
             <div class="container">
-                <h1 class="display-4">Daily Weather Map</h1>
+                <div class="row">
+                    <h1 class="display-4">Daily Weather Map</h1>
+                </div>
+                <div class="row">
+                    <div class="col" id="clock"></div>
+                </div>
             </div>
         </div>
 
-        <div class="row m-1">
-            <div class="col" id="clock"></div>
-        </div>
+
         <div class="row">
-            <div class="col-4 border" id="aside">
-                <div class="row p-3">
+            <div class="col-4 rounded mx-auto" id="aside">
+                <div class="row p-3 rounded" style="background-color: #48cae4;">
                     <form>
                         <input type="text" id="citySearch">
                         <input type="button" value="Search" id="submit">
                     </form>
                 </div>
-                <div class="row">
-                    <div class="card" style="width: 100%;">
-                        <div class="card-header" id="recentheader">
-                            <h4>Recent Search:</h4>
+                <div class="row rounded">
+                    <div class="card" style="width: 100%; background-color: #caf0f8;">
+                        <div class="card-header" id="recentheader" style="background-color: #0077b6; color: #caf0f8">
+                            <h4>Recent Cities</h4>
                         </div>
                     </div>
                 </div>
@@ -44,26 +47,25 @@
                     </div>
                 </div>
             </div>
-
-            <div class="container col-8">
+            <div class="col-7 mx-auto">
                 <div class="row">
                     <div class="card" style="width: 100%;">
-                        <div class="card-header">
-                            <h4>Current Conditions:</h4>
+                        <div class="card-header" style="background-color: #0077b6; color: #caf0f8">
+                            <h4>Current Conditions</h4>
                         </div>
-                        <div class="card-body" id="current">
+                        <div class="card-body" style="background-color: #caf0f8; color: #caf0f8" id="current">
 
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="card" style="width: 100%;">
-                        <div class="card-header">
+                    <div class="card mx-auto" style="width: 100%;">
+                        <div class="card-header" style="background-color: #0077b6; color: #caf0f8">
                             <h4>Five Day Forecast<span id="city"></span></h4>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="background-color: #caf0f8; color: #caf0f8">
                             <div class="row">
-                                <div class="col-sm-2">
+                                <div class="col-sm-2 mx-auto">
                                     <div class="card">
                                         <div class="card-body" id="day1">
                                             <p id="carddate1"></p>
@@ -75,7 +77,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-2 mx-auto">
                                     <div class="card">
                                         <div class="card-body" id="day2">
                                             <p id="carddate2"></p>
@@ -85,7 +87,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-2 mx-auto">
                                     <div class="card">
                                         <div class="card-body" id="day3">
                                             <p id="carddate3"></p>
@@ -95,7 +97,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-2 mx-auto">
                                     <div class="card">
                                         <div class="card-body" id="day4">
                                             <p id="carddate4"></p>
@@ -105,7 +107,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-2">
+                                <div class="col-sm-2 mx-auto">
                                     <div class="card">
                                         <div class="card-body" id="day5">
                                             <p id="carddate5"></p>
