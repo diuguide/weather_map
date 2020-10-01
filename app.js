@@ -60,15 +60,11 @@ $(document).ready(() => {
                 if (response.current.uvi >= 10 && response.current.uvi <= 11) {
                     $('#uvIndex').css('background-color', 'yellow');
                 }
-                // clear results //
-
-                clearScreen();
-
+                
                 for (let i = 1; i < 6; i++) {
                     var hourString = i.toString();
 
                     let day = moment.unix(response.daily[i].dt).format('MM-DD');
-
 
                     $('#carddate' + hourString).append($('<div>').addClass('row').html(`<p>Date: ${day}</p>`));
                     $('#cardtemp' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html(`<p>Temp: ${response.daily[i].temp.day} F</p>`));
@@ -85,47 +81,20 @@ $(document).ready(() => {
 
     // function for local storage components //
     function recentsearch() {
-
+        $('#lowerAside').html('');
         let mostRecentSearch = localStorage.getItem('recent');
         recentSearches.push(mostRecentSearch);
-        localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
-        $('#lowerAside').html('');
-        for (let i = 0; i < recentSearches.length; i++) {
+        let filter = recentSearches.filter((item, index) => recentSearches.indexOf(item) === index);
+
+        console.log(filter);
+        localStorage.setItem('recentSearches', JSON.stringify(filter));
+
+        for (let i = 0; i < filter.length; i++) {
 
             $('#lowerAside').append($('<div>').attr('id', 'mostRecent').addClass('row border p-1 recentSearch').html(`<p>${recentSearches[i]}</p>`));
         }
-        $('.recentSearch').on('click', () => {
-
-            if (recentSearches.length > 0) {
-                var cityName = recentSearches[recentSearches.length - 1];
-                $("#citySearch").val(cityName);
-
-            }
-
-        });
     }
-    function clearScreen() {
-        $('#carddate1').html('');
-        $('#cardtemp1').html('');
-        $('#cardhumid1').html('');
-        $('#cardcond1').html('');
-        $('#carddate2').html('');
-        $('#cardtemp2').html('');
-        $('#cardhumid2').html('');
-        $('#cardcond2').html('');
-        $('#carddate3').html('');
-        $('#cardtemp3').html('');
-        $('#cardhumid3').html('');
-        $('#cardcond3').html('');
-        $('#carddate4').html('');
-        $('#cardtemp4').html('');
-        $('#cardhumid4').html('');
-        $('#cardcond4').html('');
-        $('#carddate5').html('');
-        $('#cardtemp5').html('');
-        $('#cardhumid5').html('');
-        $('#cardcond5').html('');
-    }
+    
     function update() {
         $('#clock').html(moment().format('MMMM D, YYYY H:mm:ss'));
     }
