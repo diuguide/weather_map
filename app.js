@@ -1,12 +1,14 @@
 $(document).ready(() => {
     let currentEl = $('#current');
+    let filter;
     let recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
+    recentSearch();
 
     // click event for search bar //
     $('#submit').on('click', () => {
         $('#searchResEl').css('display', 'block')
         runProgram();
-        recentsearch();
+        recentSearch();
     });
 
     function runProgram() {
@@ -79,18 +81,18 @@ $(document).ready(() => {
     };
 
     // function for local storage components //
-    function recentsearch() {
+    function recentSearch() {
         $('#lowerAside').html('');
         let mostRecentSearch = localStorage.getItem('recent');
         recentSearches.push(mostRecentSearch);
-        let filter = recentSearches.filter((item, index) => recentSearches.indexOf(item) === index);
-
-        console.log(filter);
+        filter = recentSearches.filter((item, index) => recentSearches.indexOf(item) === index);
         localStorage.setItem('recentSearches', JSON.stringify(filter));
+        populateRecent();
+    }
 
+    function populateRecent() {
         for (let i = 0; i < filter.length; i++) {
-
-            $('#lowerAside').append($('<button>').attr('id', 'mostRecent').addClass('row border p-1 w-100 recentSearch').html(`<p>${filter[i]}</p>`));
+            $('#lowerAside').append($('<button>').attr('id', 'mostRecent').addClass('row border p-1 w-100 recentSearch').html(`${filter[i]}`));
         }
     }
 
