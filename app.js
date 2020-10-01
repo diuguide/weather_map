@@ -1,7 +1,7 @@
 $(document).ready(() => {
     let currentEl = $('#current');
     let filter;
-    let recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || ["Raleigh"];
+    let recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || ["Raleigh", "Durham", "Chapel Hill"];
     displayRecentOnLoad();
 
     // click event for search bar //
@@ -10,7 +10,7 @@ $(document).ready(() => {
         runProgram();
         recentSearch();
     });
-
+    
     function runProgram() {
         let cityName = $('#citySearch').val();
 
@@ -89,9 +89,8 @@ $(document).ready(() => {
         localStorage.setItem('recentSearches', JSON.stringify(filter));
         populateRecent();
     }
-    function displayRecentOnLoad () {
+    function displayRecentOnLoad() {
         filter = recentSearches.filter((item, index) => recentSearches.indexOf(item) === index);
-        // localStorage.setItem('recentSearches', JSON.stringify(filter));
         populateRecent();
     }
 
