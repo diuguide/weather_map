@@ -4,6 +4,7 @@ $(document).ready(() => {
 
     // click event for search bar //
     $('#submit').on('click', () => {
+        $('#searchResEl').css('display', 'block')
         runProgram();
         recentsearch();
     });
@@ -18,12 +19,7 @@ $(document).ready(() => {
         localStorage.setItem('recent', cityName);
 
         // clear any exsisting search results from the page //
-        $('#carddate').val('');
-        $('#cardtemp').val('');
-        $('#cardhumid').val('');
-        $('#cardcond').val('');
 
-        $('#citySearch').val('');
         currentEl.html('');
         // ajax call //
         let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=08bea1b85d0458c294c28493bcc4e4fe`;
@@ -60,11 +56,11 @@ $(document).ready(() => {
                     $('#uvIndex').css('background-color', 'yellow');
                 }
 
+                clearScreen();
+
                 for (let i = 1; i < 6; i++) {
                     var hourString = i.toString();
-
                     let day = moment.unix(response.daily[i].dt).format('MM-DD');
-
                     $('#carddate' + hourString).append($('<div>').addClass('row').html(`<p>Date: ${day}</p>`));
                     $('#cardtemp' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html(`<p>Temp: ${response.daily[i].temp.day} F</p>`));
                     $('#cardhumid' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html(`<p>Humidity: ${response.daily[i].humidity}%</p>`));
@@ -75,7 +71,11 @@ $(document).ready(() => {
 
         });
         $('#citySearch').val('');
-
+        $('#carddate').val('');
+        $('#cardtemp').val('');
+        $('#cardhumid').val('');
+        $('#cardcond').val('');
+        $('#citySearch').val('');
     };
 
     // function for local storage components //
@@ -92,6 +92,29 @@ $(document).ready(() => {
 
             $('#lowerAside').append($('<button>').attr('id', 'mostRecent').addClass('row border p-1 w-100 recentSearch').html(`<p>${filter[i]}</p>`));
         }
+    }
+
+    function clearScreen() {
+        $('#carddate1').html('');
+        $('#cardtemp1').html('');
+        $('#cardhumid1').html('');
+        $('#cardcond1').html('');
+        $('#carddate2').html('');
+        $('#cardtemp2').html('');
+        $('#cardhumid2').html('');
+        $('#cardcond2').html('');
+        $('#carddate3').html('');
+        $('#cardtemp3').html('');
+        $('#cardhumid3').html('');
+        $('#cardcond3').html('');
+        $('#carddate4').html('');
+        $('#cardtemp4').html('');
+        $('#cardhumid4').html('');
+        $('#cardcond4').html('');
+        $('#carddate5').html('');
+        $('#cardtemp5').html('');
+        $('#cardhumid5').html('');
+        $('#cardcond5').html('');
     }
 
     function update() {
