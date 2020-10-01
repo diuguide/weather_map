@@ -1,7 +1,12 @@
 $(document).ready(() => {
     let currentEl = $('#current');
+    let recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || [];
+
     // click event for search bar //
-    $('#submit').on('click', runProgram);
+    $('#submit').on('click', () => {
+        runProgram();
+        recentsearch();
+    });
 
     function runProgram() {
         let cityName = $('#citySearch').val();
@@ -10,9 +15,7 @@ $(document).ready(() => {
         let lat = 0;
         let lon = 0;
 
-        // begin local storage //
         localStorage.setItem('recent', cityName);
-        recentsearch();
 
         // clear any exsisting search results from the page //
         $('#carddate').val('');
@@ -28,6 +31,7 @@ $(document).ready(() => {
             url: queryURL,
             method: "GET"
         }).then((response) => {
+
             // append data to html //
             $('#city').html(`: ${response.name}`);
             currentEl.append(`<p>${response.name}</p>`);
@@ -60,7 +64,6 @@ $(document).ready(() => {
 
                 clearScreen();
 
-                // create and print local storage key based on recent searches //
                 for (let i = 1; i < 6; i++) {
                     var hourString = i.toString();
 
@@ -83,17 +86,12 @@ $(document).ready(() => {
     // function for local storage components //
     function recentsearch() {
 
-        $("#lowerAside").empty();
-
-        let recentSearches = JSON.parse(localStorage.getItem('recentSearches')) || [];
-        const mostRecentSearch = localStorage.getItem('recent');
+        let mostRecentSearch = localStorage.getItem('recent');
         recentSearches.push(mostRecentSearch);
         localStorage.setItem('recentSearches', JSON.stringify(recentSearches));
-        console.log(recentSearches);
         $('#lowerAside').html('');
         for (let i = 0; i < recentSearches.length; i++) {
-            $('')
-            let index = i;
+
             $('#lowerAside').append($('<div>').attr('id', 'mostRecent').addClass('row border p-1 recentSearch').html(`<p>${recentSearches[i]}</p>`));
         }
         $('.recentSearch').on('click', () => {
