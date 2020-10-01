@@ -123,5 +123,5 @@ $(document).ready(() => {
         $('#clock').html(moment().format('MMMM D, YYYY H:mm:ss'));
     }
 
-    setInterval(update, 1000);
+    setInterval(update, 100);
 });
