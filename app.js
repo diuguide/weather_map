@@ -31,7 +31,6 @@ $(document).ready(() => {
             url: queryURL,
             method: "GET"
         }).then((response) => {
-
             // append data to html //
             $('#city').html(`: ${response.name}`);
             currentEl.append(`<p>${response.name}</p>`);
@@ -60,7 +59,7 @@ $(document).ready(() => {
                 if (response.current.uvi >= 10 && response.current.uvi <= 11) {
                     $('#uvIndex').css('background-color', 'yellow');
                 }
-                
+
                 for (let i = 1; i < 6; i++) {
                     var hourString = i.toString();
 
@@ -91,10 +90,10 @@ $(document).ready(() => {
 
         for (let i = 0; i < filter.length; i++) {
 
-            $('#lowerAside').append($('<div>').attr('id', 'mostRecent').addClass('row border p-1 recentSearch').html(`<p>${recentSearches[i]}</p>`));
+            $('#lowerAside').append($('<button>').attr('id', 'mostRecent').addClass('row border p-1 w-100 recentSearch').html(`<p>${filter[i]}</p>`));
         }
     }
-    
+
     function update() {
         $('#clock').html(moment().format('MMMM D, YYYY H:mm:ss'));
     }
