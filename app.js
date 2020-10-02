@@ -65,8 +65,8 @@ $(document).ready(() => {
                     var hourString = i.toString();
                     let day = moment.unix(response.daily[i].dt).format('MM-DD');
                     $('#carddate' + hourString).append($('<div>').addClass('row').html(`Date: ${day}`));
-                    $('#cardtemp' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html(`Temp: ${response.daily[i].temp.day} F`));
-                    $('#cardhumid' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html(`Humidity: ${response.daily[i].humidity}%`));
+                    $('#cardtemp' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html(`<p>Temp: ${response.daily[i].temp.day} F`));
+                    $('#cardhumid' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html(`<p>Humidity: ${response.daily[i].humidity}%`));
                     $('#cardcond' + hourString).append($('<img>').addClass('row').attr("src", `http://openweathermap.org/img/w/${response.daily[i].weather[0].icon}.png`).html(`<img src="http://openweathermap.org/img/w/${response.daily[i].weather[0].icon}.png`));
                 }
 
