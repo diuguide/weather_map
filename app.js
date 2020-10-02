@@ -6,7 +6,7 @@ $(document).ready(() => {
 
     // click event for search bar //
     $('#submit').on('click', () => {
-        $('#searchResEl').css('display', 'block')
+        $('#searchResEl').fadeIn().css('display', 'block')
         runProgram();
         recentSearch();
     });
@@ -31,10 +31,10 @@ $(document).ready(() => {
         }).then((response) => {
             // append data to html //
             $('#city').html(`: ${response.name}`);
-            currentEl.append(`<p>${response.name}</p>`);
-            currentEl.append(`<p>Tempurature: ${response.main.temp}F</p>`);
-            currentEl.append(`<p>Humidity: ${response.main.humidity}%</p>`);
-            currentEl.append(`<p>Wind Speed: ${response.wind.speed}mph</p>`);
+            currentEl.append(`<div>${response.name}</div>`);
+            currentEl.append(`<div>Tempurature: ${response.main.temp}F</div>`);
+            currentEl.append(`<div>Humidity: ${response.main.humidity}%</div>`);
+            currentEl.append(`<div>Wind Speed: ${response.wind.speed}mph</div>`);
             let iconurl = `https://openweathermap.org/img/w/${response.weather[0].icon}.png`;
             currentEl.prepend(`<img src=${iconurl}>`);
             // set variables for second api search parameters //
@@ -45,6 +45,7 @@ $(document).ready(() => {
                 url: queryURL2,
                 method: "GET"
             }).then((response) => {
+                console.log(response)
                 // complete data grab from API, appends remaining data and forcast to page //
                 currentEl.append($('<p>').html(`UV Index: ${response.current.uvi}`).attr('id', 'uvIndex'));
                 // color coding for UV index //
@@ -63,9 +64,9 @@ $(document).ready(() => {
                 for (let i = 1; i < 6; i++) {
                     var hourString = i.toString();
                     let day = moment.unix(response.daily[i].dt).format('MM-DD');
-                    $('#carddate' + hourString).append($('<div>').addClass('row').html(`<p>Date: ${day}</p>`));
-                    $('#cardtemp' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html(`<p>Temp: ${response.daily[i].temp.day} F</p>`));
-                    $('#cardhumid' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html(`<p>Humidity: ${response.daily[i].humidity}%</p>`));
+                    $('#carddate' + hourString).append($('<div>').addClass('row').html(`Date: ${day}`));
+                    $('#cardtemp' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html(`Temp: ${response.daily[i].temp.day} F`));
+                    $('#cardhumid' + hourString).append($('<div>').addClass('row').attr("id", "time-block-" + hourString).html(`Humidity: ${response.daily[i].humidity}%`));
                     $('#cardcond' + hourString).append($('<img>').addClass('row').attr("src", `http://openweathermap.org/img/w/${response.daily[i].weather[0].icon}.png`).html(`<img src="http://openweathermap.org/img/w/${response.daily[i].weather[0].icon}.png`));
                 }
 
@@ -100,7 +101,7 @@ $(document).ready(() => {
         }
     }
     function cityClick(clicked) {
-        $('#searchResEl').css('display', 'block');
+        $('#searchResEl').fadeIn().css('display', 'block');
         runProgram(clicked);
         recentSearch();
     }
