@@ -10,9 +10,9 @@ $(document).ready(() => {
         runProgram();
         recentSearch();
     });
-    
-    function runProgram() {
-        let cityName = $('#citySearch').val();
+
+    function runProgram(value) {
+        let cityName = $('#citySearch').val() || value;
 
         // set variables for static html //
         let lat = 0;
@@ -96,8 +96,13 @@ $(document).ready(() => {
 
     function populateRecent() {
         for (let i = 0; i < filter.length; i++) {
-            $('#lowerAside').append($('<button>').attr('id', 'mostRecent').addClass('row border p-1 w-100 recentSearch').html(`${filter[i]}`));
+            $('#lowerAside').append($('<button>').attr('id', `${filter[i]}`).click(function () { cityClick(this.id); }).addClass(`recentCity w-100`).html(`${filter[i]}`));
         }
+    }
+    function cityClick(clicked) {
+        $('#searchResEl').css('display', 'block');
+        runProgram(clicked);
+        recentSearch();
     }
 
     function clearScreen() {
