@@ -1,9 +1,11 @@
 $(document).ready(() => {
+    let value = 'Raleigh'
     let currentEl = $('#current');
     let filter;
     let recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || ["Raleigh", "Durham", "Chapel Hill"];
+    $('#searchResEl').fadeIn().css('display', 'block')
     displayRecentOnLoad();
-
+    runProgram(value);
     // click event for search bar //
     $('#submit').on('click', () => {
         $('#searchResEl').fadeIn().css('display', 'block')
