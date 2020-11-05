@@ -1,6 +1,8 @@
 $(document).ready(() => {
     let value = 'Raleigh'
-    let currentEl = $('#current');
+    let nameEl = $('#name');
+    let iconEl = $('#iconURL');
+    let tempEl = $('#temp');
     let filter;
     let recentSearches = JSON.parse(localStorage.getItem("recentSearches")) || ["Raleigh", "Durham", "Chapel Hill"];
     displayRecentOnLoad();
@@ -25,21 +27,25 @@ $(document).ready(() => {
 
         // clear any exsisting search results from the page //
 
-        currentEl.html('');
+        // currentEl.html('');
         // ajax call //
         let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=imperial&appid=08bea1b85d0458c294c28493bcc4e4fe`;
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then((response) => {
-            // append data to html //
-            $('#city').html(`: ${response.name}`);
-            currentEl.append(`<div>${response.name}</div>`);
-            currentEl.append(`<div>Tempurature: ${response.main.temp}F</div>`);
-            currentEl.append(`<div>Humidity: ${response.main.humidity}%</div>`);
-            currentEl.append(`<div>Wind Speed: ${response.wind.speed}mph</div>`);
+            console.log(response)
             let iconurl = `https://openweathermap.org/img/w/${response.weather[0].icon}.png`;
-            currentEl.prepend(`<img src=${iconurl}>`);
+            // append data to html //
+            iconEl.append(`<img style="height: 100px;" src=${iconurl}>`);
+            nameEl.append(`<h1>${response.name}<h1>`);
+            tempEl.append(`<h1>${response.main.temp} F</h1>`);
+
+
+            // currentEl.append(`<div>Humidity: ${response.main.humidity}%</div>`);
+            // currentEl.append(`<div>Wind Speed: ${response.wind.speed}mph</div>`);
+
+
             // set variables for second api search parameters //
             lat = response.coord.lat;
             lon = response.coord.lon;
@@ -50,17 +56,17 @@ $(document).ready(() => {
             }).then((response) => {
                 console.log(response)
                 // complete data grab from API, appends remaining data and forcast to page //
-                currentEl.append($('<p>').html(`UV Index: ${response.current.uvi}`).attr('id', 'uvIndex'));
-                // color coding for UV index //
-                if (response.current.uvi > 11) {
-                    $('#uvIndex').css('background-color', 'red');
-                }
-                if (response.current.uvi < 10) {
-                    $('#uvIndex').css('background-color', 'green');
-                }
-                if (response.current.uvi >= 10 && response.current.uvi <= 11) {
-                    $('#uvIndex').css('background-color', 'yellow');
-                }
+                // currentEl.append($('<p>').html(`UV Index: ${response.current.uvi}`).attr('id', 'uvIndex'));
+                // // color coding for UV index //
+                // if (response.current.uvi > 11) {
+                //     $('#uvIndex').css('background-color', 'red');
+                // }
+                // if (response.current.uvi < 10) {
+                //     $('#uvIndex').css('background-color', 'green');
+                // }
+                // if (response.current.uvi >= 10 && response.current.uvi <= 11) {
+                //     $('#uvIndex').css('background-color', 'yellow');
+                // }
 
                 clearScreen();
 
