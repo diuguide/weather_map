@@ -50,7 +50,7 @@ router.put('/updateHome', (req, res) => {
 router.put('/updateRecentSearch', (req, res) => {
   User.findOneAndUpdate(
     { username: req.body.username },
-    { recent_search: req.body.recent_search },
+    { $push: { recent_search: req.body.recent_search } },
     { safe: true, upsert: true },
     (error, data) => {
       if(error){
@@ -64,6 +64,6 @@ router.put('/updateRecentSearch', (req, res) => {
     console.log("Data promise: ", data);
   })
   .catch(err => console.log("Error Catch: ", err))
-});
+})
 
 module.exports = router;

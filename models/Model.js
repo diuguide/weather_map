@@ -13,10 +13,10 @@ const UserSchema = new Schema({
         trim: true,
         required: "Password is required"
     },
-    recent_search: {
+    recent_search: [{
         type: String,
         trim: true
-    },
+    }],
     home: {
         type: String,
         trim: true
