@@ -21,3 +21,11 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/weather_map", {
     }, (err) => {
         console.log("Error connecting to Database: ", err)
     });
+
+//mongoose promise is depricated, we overide it with nodes's promise
+mongoose.Promise = global.Promise; 
+
+//Start the api server
+app.listen(port, () => {
+    console.log(`Server running on ${port}`);
+});
