@@ -10,8 +10,6 @@ An [API based weather app](https://diuguide.github.io/weather_map/) that allows 
 <img src="./images/screenshot_weathermap.png" alt="weather_map" width="350">
 </a>
 
-
-
 ## Table of Contents
 
 - [Installation](#installation)

@@ -1,0 +1,24 @@
+{
+  "name": "weather_map",
+  "version": "1.0.0",
+  "description": "![GitHub top language](https://img.shields.io/github/languages/top/diuguide/symptom_tracker) [![GitHub license](https://img.shields.io/github/license/diuguide/symptom_tracker)](LICENSE) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diuguide/weather_map.git"
+  },
+  "author": "Everett Diuguid",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/diuguide/weather_map/issues"
+  },
+  "homepage": "https://github.com/diuguide/weather_map#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.10.13"
+  }
+}
