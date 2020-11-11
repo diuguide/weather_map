@@ -1,12 +1,14 @@
 const express = require('express');
-const User = require('../models/Model');
 const router = express.Router();
 
-router.get('/User', (req, res) => {
+// User Model
+const User = require('../models/Model');
+
+router.get('/', (req, res) => {
     User.find({})
-    .then(data = res.json(data))
+    .then(data => res.json(data))
     .catch(err => console.log('Error GET: ', err));
-});
+})
 
 router.post('/User', (req, res) => {
     User.create(req.body)
