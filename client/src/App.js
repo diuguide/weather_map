@@ -1,12 +1,13 @@
+import SearchBar from './components/SearchBar';
 import './App.css';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <>
-      <h1>Test</h1>
-    </>
+    <div className="container-fluid"> 
+      <SearchBar />
+    </div>
   );
 }
 
