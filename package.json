@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/diuguide/weather_map#readme",
   "dependencies": {
+    "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
     "concurrently": "^5.3.0",
     "express": "^4.17.1",
