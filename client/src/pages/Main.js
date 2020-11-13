@@ -1,11 +1,13 @@
 import { Row, Col } from 'react-bootstrap';
 
-const resultsTest = () => {
-    return(
+const Main = () => {
+    return (
         <Row>
             <Col>
-            
+                <h1></h1>
             </Col>
         </Row>
     )
 }
+
+export default Main;

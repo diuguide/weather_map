@@ -12,8 +12,9 @@ function SearchBar() {
         axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=08bea1b85d0458c294c28493bcc4e4fe&units=imperial`)
             .then(response => console.log(response))
             .catch(err => console.log(err));
-            setSearchQuery('');
+        setSearchQuery('');
     }
+
     return (
         <div className="searchBar">
             <Form.Group className="d-inline-flex" controlId="formBasicSearch">

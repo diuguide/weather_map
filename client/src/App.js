@@ -1,15 +1,27 @@
 import SearchBar from './components/SearchBar';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Main from './pages/Main';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 function App() {
-  
+
   return (
-    <div className="container-fluid"> 
-      <SearchBar />
-    </div>
+    <Router>
+      <div className="container-fluid">
+        <SearchBar />
+      </div>
+      <Switch>
+        <Route path="/Main">
+          <Main />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
