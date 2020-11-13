@@ -9,4 +9,3 @@ const resultsTest = () => {
         </Row>
     )
 }
-

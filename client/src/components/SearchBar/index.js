@@ -10,17 +10,9 @@ function SearchBar() {
 
     const handleSubmit = () => {
         axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=08bea1b85d0458c294c28493bcc4e4fe&units=imperial`)
-            .then(response => {
-                // handle success
-                console.log(response);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-            .then(function () {
-                // always executed
-            });
+            .then(response => console.log(response))
+            .catch(err => console.log(err));
+            setSearchQuery('');
     }
     return (
         <div className="searchBar">
