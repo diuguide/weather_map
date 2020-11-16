@@ -28,11 +28,12 @@ function SearchBar() {
     const handleSubmit = () => {
         console.log('search Query inside click:', searchQuery);
         setRecentSearch(oldArray => [...oldArray, searchQuery]);
-        setSearchQuery('');
         // axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=08bea1b85d0458c294c28493bcc4e4fe&units=imperial`)
         //     .then(response => console.log(response))
         //     .catch(err => console.log(err));
-        return dispatch({ type: "RECENT_SEARCH", recent_search: recentSearch })
+        dispatch({ type: "RECENT_SEARCH", recent_search: recentSearch })
+        setSearchQuery('');
+        history.push('/Main');
     }
     return (
         <div className="searchBar">

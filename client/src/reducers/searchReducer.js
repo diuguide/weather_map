@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
         case RECENT_SEARCH:
             return {
                 ...state,
-                recent_search: action.recent_search
+                recent_search: action.payload
             }
         default:
             return state;
