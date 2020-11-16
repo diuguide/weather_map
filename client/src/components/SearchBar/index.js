@@ -14,9 +14,7 @@ function SearchBar({ weatherCall }) {
     const [recentSearch, setRecentSearch] = useState([]);
     
     useEffect(() => {
-        
-        console.log('recent search: ', recentSearch);
-        console.log('store SearchBar: ', store)
+        localStorage.setItem('recent_search', JSON.stringify(recentSearch));
     });
 
     const handleChange = (e) => {
@@ -25,7 +23,6 @@ function SearchBar({ weatherCall }) {
     };
     
     const handleSubmit = () => {
-        console.log('search Query inside click:', searchQuery);
         setRecentSearch(oldArray => [...oldArray, searchQuery]);
         weatherCall(searchQuery);
         dispatch({ type: "RECENT_SEARCH", recent_search: searchQuery })

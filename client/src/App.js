@@ -2,8 +2,7 @@ import SearchBar from './components/SearchBar';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import axios from 'axios';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
@@ -21,7 +20,6 @@ function App() {
     console.log('weather call');
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=08bea1b85d0458c294c28493bcc4e4fe&units=imperial`)
       .then(response => {
-        console.log('API CALL', response);
         dispatch({ type: SEARCH_DATA, search_data: response })
       })
       .catch(err => console.log(err));
