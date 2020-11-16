@@ -1,20 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 
 function SearchBar() {
+
+    const store = useSelector(store => store, shallowEqual)
+    const dispatch = useDispatch();
+    const history = useHistory();
+    
     const [searchQuery, setSearchQuery] = useState('');
+    const [recentSearch, setRecentSearch] = useState([]);
 
-    const handleChange = (e) => setSearchQuery(e.target.value);
+    useEffect(() => {
+        
+        console.log('recent search: ', recentSearch);
+        console.log('store SearchBar: ', store)
+    });
 
+    const handleChange = (e) => {
+        const search = e.target.value;    
+        setSearchQuery(search);
+    };
+    
     const handleSubmit = () => {
-        axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=08bea1b85d0458c294c28493bcc4e4fe&units=imperial`)
-            .then(response => console.log(response))
-            .catch(err => console.log(err));
+        console.log('search Query inside click:', searchQuery);
+        setRecentSearch(oldArray => [...oldArray, searchQuery]);
         setSearchQuery('');
+        // axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=08bea1b85d0458c294c28493bcc4e4fe&units=imperial`)
+        //     .then(response => console.log(response))
+        //     .catch(err => console.log(err));
+        return dispatch({ type: "RECENT_SEARCH", recent_search: recentSearch })
     }
-
     return (
         <div className="searchBar">
             <Form.Group className="d-inline-flex" controlId="formBasicSearch">
