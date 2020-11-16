@@ -1,7 +1,7 @@
 import { RECENT_SEARCH } from '../actions/types';
 
 const initialState = {
-    recent_search: ''
+    recent_search: '',
 }
 
 
@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
         case RECENT_SEARCH:
             return {
                 ...state,
-                recent_search: action.payload
+                recent_search: action.recent_search
             }
         default:
             return state;
