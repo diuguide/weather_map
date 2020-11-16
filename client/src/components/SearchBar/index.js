@@ -1,11 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 
-function SearchBar() {
+function SearchBar({ weatherCall }) {
 
     const store = useSelector(store => store, shallowEqual)
     const dispatch = useDispatch();
@@ -28,9 +27,7 @@ function SearchBar() {
     const handleSubmit = () => {
         console.log('search Query inside click:', searchQuery);
         setRecentSearch(oldArray => [...oldArray, searchQuery]);
-        // axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=08bea1b85d0458c294c28493bcc4e4fe&units=imperial`)
-        //     .then(response => console.log(response))
-        //     .catch(err => console.log(err));
+        weatherCall(searchQuery);
         dispatch({ type: "RECENT_SEARCH", recent_search: searchQuery })
         setSearchQuery('');
         history.push('/Main');
