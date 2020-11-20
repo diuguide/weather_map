@@ -29,9 +29,7 @@ function App() {
   return (
     <Router>
       <div className="container-fluid">
-        {!store.searchQuery.data_loaded &&
         <SearchBar weatherCall={weatherCall} />
-        }
       </div>
       <Switch>
         <Route path="/Main">

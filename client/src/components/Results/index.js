@@ -1,4 +1,4 @@
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Card, Button } from "react-bootstrap";
 import { useSelector, shallowEqual } from "react-redux";
 
 const Results = () => {
@@ -7,21 +7,26 @@ const Results = () => {
   const dataSet = store.searchQuery.search_data.data;
   return (
     <>
-      {store.searchQuery.data_loaded && (
-        <Row>
-          <Col className="col-6 border border-rounded d-inline-flex resultsCurrent">
-            <div className="name">{dataSet.name}</div>
-            
-          </Col>
-          <Col className="col-3">
-              <div className="temp">{dataSet.main.temp}</div>
-          </Col>
-          {/* <Col className="col d-block">
-                    <div className="sunrise">Sunrise: {dataSet.sys.sunrise}</div>
-                    <div className="sunset">Sunset: {dataSet.sys.sunset}</div>
-                </Col> */}
-        </Row> 
-      )}
+      <Row className="d-inline-flex mx-auto">
+        <Col>
+          <Card className="ml-1 tempCard">
+            <Card.Header as="h5">Current Temp</Card.Header>
+            <div className="temp">{dataSet.main.temp} &deg;F</div>
+          </Card>
+        </Col>
+        <Col>
+          <Card className="ml-1 tempCard">
+            <Card.Header as="h5">Max</Card.Header>
+            <div className="temp">{dataSet.main.temp_max} &deg;F</div>
+          </Card>
+        </Col>
+        <Col>
+          <Card className="ml-1 tempCard">
+            <Card.Header as="h5">Min</Card.Header>
+            <div className="temp">{dataSet.main.temp_min} &deg;F</div>
+          </Card>
+        </Col>
+      </Row>
     </>
   );
 };
