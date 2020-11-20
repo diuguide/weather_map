@@ -31,7 +31,7 @@ function SearchBar({ weatherCall }) {
   return (
     <Row className="d-inline-flex">
       <Col>
-        <Form.Group className="d-inline-flex searchBar" controlId="formBasicSearch">
+        <Form.Group className="d-inline-flex mt-2 searchBar" controlId="formBasicSearch">
           <Form.Control
             onChange={handleChange}
             value={searchQuery}
