@@ -9,18 +9,20 @@ import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import Main from './pages/Main';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import { SEARCH_DATA } from './actions/types';
+import { DATA_LOADED, SEARCH_DATA } from './actions/types';
 
 function App() {
   const store = useSelector(store => store, shallowEqual)
   const dispatch = useDispatch();
   console.log('store in APP.js: ', store);
+  const APIkey = '08bea1b85d0458c294c28493bcc4e4fe';
 
   const weatherCall = (searchQuery) => {
     console.log('weather call');
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=08bea1b85d0458c294c28493bcc4e4fe&units=imperial`)
+    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=${APIkey}&units=imperial`)
       .then(response => {
-        dispatch({ type: SEARCH_DATA, search_data: response })
+        dispatch({ type: SEARCH_DATA, search_data: response });
+        dispatch({ type: DATA_LOADED });
       })
       .catch(err => console.log(err));
   }
