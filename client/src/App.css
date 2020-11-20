@@ -1,7 +1,13 @@
 .container-fluid {
-  margin-top: 200px;
+  margin-top: 50px;
 }
 .searchBar {
   width: 30%;
   margin: auto;
+}
+.resultsCurrent {
+  margin: auto;
+}
+.temp {
+  font-size: 100px;
 }
