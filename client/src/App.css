@@ -15,3 +15,6 @@
 .results {
   margin: auto;
 }
+.degreeSymbol, .fSymbol, .mphSymbol, .mbarSymbol {
+  font-size: 25px;
+}
