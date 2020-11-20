@@ -43,9 +43,11 @@ function SearchBar({ weatherCall }) {
           </Button>
         </Form.Group>
       </Col>
+      {store.searchQuery.data_loaded && (
       <Col>
-
+        <div className="queryName"><h1>{store.searchQuery.search_data.data.name}</h1></div>
       </Col>
+      )}
     </Row>
   );
 }
