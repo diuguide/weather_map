@@ -1,17 +1,17 @@
 .container-fluid {
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .searchBar {
   width: 30%;
-  margin: auto;
-}
-.resultsCurrent {
-  margin: auto;
+  
 }
 .temp {
+  text-align: center;
   font-size: 50px;
-  margin-left: 10px;
 }
 .tempCard {
   width: 200px;
+}
+.results {
+  margin: auto;
 }
