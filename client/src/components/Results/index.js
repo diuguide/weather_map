@@ -47,6 +47,26 @@ const Results = () => {
             </Card>
           </Col>
         </Row>
+        <Row className="d-inline-flex mt-3 results">
+          <Col>
+            <Card className="ml-1 shadow tempCard">
+              <Card.Header className="text-center" as="h5">Condition</Card.Header>
+              <div className="temp">{dataSet.weather.main}</div>
+            </Card>
+          </Col>
+          <Col>
+            <Card className="ml-1 shadow tempCard">
+              <Card.Header className="text-center" as="h5">Humidity</Card.Header>
+              <div className="temp">{dataSet.main.humidity}<span className="degreeSymbol">%</span></div>
+            </Card>
+          </Col>
+          <Col>
+            <Card className="ml-1 shadow tempCard">
+              <Card.Header className="text-center" as="h5">Wind Speed</Card.Header>
+              <div className="temp">{dataSet.wind.speed}<span className="mphSymbol">mph</span></div>
+            </Card>
+          </Col>
+        </Row>
     </>
   );
 };
