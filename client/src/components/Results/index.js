@@ -2,11 +2,12 @@ import { Row, Col, Card, Container } from "react-bootstrap";
 import { useSelector, shallowEqual } from "react-redux";
 
 
+
 const Results = () => {
   const store = useSelector((store) => store, shallowEqual);
   console.log("store inside Results: ", store);
   const dataSet = store.searchQuery.search_data.data;
-  const imageIcon = `./icons/${dataSet.weather[0].icon}.png`;
+  const imageIcon = `/icons/${dataSet.weather[0].icon}.png`;
   return (
     <>
         <Row className="d-inline-flex results">
@@ -59,7 +60,7 @@ const Results = () => {
           <Col>
             <Card className="ml-1 shadow tempCard">
               <Card.Header className="text-center" as="h5">Icon</Card.Header>
-              <div className="temp"><img alt="weather" src={require(`./icon/${dataSet.weather[0].icon}`)} /></div>
+              <div className="temp"><img src={imageIcon}></img> </div>
             </Card>
           </Col>
           <Col>
