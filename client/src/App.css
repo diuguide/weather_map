@@ -1,22 +1,28 @@
-.container-fluid {
-  margin-top: 20px;
-}
 .searchBar {
   width: 300px;
 }
 .temp {
   text-align: center;
+  font-size: 150px;
+}
+.humidityValue {
   font-size: 50px;
+  text-align: center;
+}
+.windSpdValue {
+  font-size: 50px;
+  text-align: center;
+}
+.pressureValue {
+  font-size: 50px;
+  text-align: center;
 }
 .tempCard {
   width: 200px;
 }
-.results {
-  margin: auto;
-}
 .degreeSymbol, .fSymbol, .mphSymbol, .mbarSymbol {
   font-size: 25px;
 }
-.currentCond {
-  padding-left:40px;
+.imgIcon {
+  padding-top: 30px;
 }

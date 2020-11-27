@@ -1,4 +1,4 @@
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Container } from 'react-bootstrap';
 import Results from '../components/Results';
 import { useSelector, shallowEqual } from "react-redux";
 

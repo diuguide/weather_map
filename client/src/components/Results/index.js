@@ -8,7 +8,7 @@ const Results = () => {
   const imageIcon = `/icons/${dataSet.weather[0].icon}.png`;
   return (
     <Container>
-      <Row className="d-inline-flex justify-content-center results">
+      <Row className="results">
         <Col>
           <div className="temp">
             {dataSet.main.temp}
@@ -22,36 +22,35 @@ const Results = () => {
           <div className="currentCond">{dataSet.weather[0].main}</div>
         </Col>
       </Row>
-      <Row className="mt-3 results">
-        
+      <Row className="results">
         <Col>
-          <Card className="ml-1 shadow tempCard">
+          <Card className="shadow tempCard">
             <Card.Header className="text-center" as="h5">
               Humidity
             </Card.Header>
-            <div className="temp">
+            <div className="humidityValue">
               {dataSet.main.humidity}
               <span className="degreeSymbol">%</span>
             </div>
           </Card>
         </Col>
         <Col>
-          <Card className="ml-1 shadow tempCard">
+          <Card className="shadow tempCard">
             <Card.Header className="text-center" as="h5">
               Wind Speed
             </Card.Header>
-            <div className="temp">
+            <div className="windSpdValue">
               {dataSet.wind.speed}
               <span className="mphSymbol">mph</span>
             </div>
           </Card>
         </Col>
         <Col>
-          <Card className="ml-1 shadow tempCard">
+          <Card className="shadow tempCard">
             <Card.Header className="text-center" as="h5">
               Pressure
             </Card.Header>
-            <div className="temp">
+            <div className="pressureValue">
               {dataSet.main.pressure}
               <span className="mbarSymbol">mbar</span>
             </div>
