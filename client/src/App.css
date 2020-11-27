@@ -17,3 +17,6 @@
 .degreeSymbol, .fSymbol, .mphSymbol, .mbarSymbol {
   font-size: 25px;
 }
+.currentCond {
+  padding-left:40px;
+}
