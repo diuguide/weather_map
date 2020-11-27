@@ -19,10 +19,15 @@
 }
 .tempCard {
   width: 200px;
+  height: 110px;
 }
 .degreeSymbol, .fSymbol, .mphSymbol, .mbarSymbol {
   font-size: 25px;
 }
-.imgIcon {
-  padding-top: 30px;
+.currentCond {
+  padding-left: 40px;
+}
+.results {
+  line-height: 1;
+  margin-bottom: 10px;
 }

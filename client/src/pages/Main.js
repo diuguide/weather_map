@@ -7,11 +7,7 @@ const Main = () => {
     return (
         <>
         {store.searchQuery.data_loaded && (
-        <Row>
-            <Col> 
-                <Results />
-            </Col>
-        </Row>
+        <Results />
         )}
         </>
     )

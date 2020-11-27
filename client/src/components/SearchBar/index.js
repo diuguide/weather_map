@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row, Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 
@@ -29,26 +29,33 @@ function SearchBar({ weatherCall }) {
     history.push("/Main");
   };
   return (
-    <Row className="d-inline-flex">
-      <Col>
-        <Form.Group className="d-inline-flex mt-2 searchBar" controlId="formBasicSearch">
-          <Form.Control
-            onChange={handleChange}
-            value={searchQuery}
-            type="search"
-            placeholder="Enter City"
-          />
-          <Button onClick={handleSubmit} variant="dark" type="submit">
-            GO
-          </Button>
-        </Form.Group>
-      </Col>
-      {store.searchQuery.data_loaded && (
-      <Col>
-        <div className="queryName"><h1>{store.searchQuery.search_data.data.name}</h1></div>
-      </Col>
-      )}
-    </Row>
+    <Container>
+      <Row className="d-inline-flex">
+        <Col>
+          <Form.Group
+            className="d-inline-flex mt-2 searchBar"
+            controlId="formBasicSearch"
+          >
+            <Form.Control
+              onChange={handleChange}
+              value={searchQuery}
+              type="search"
+              placeholder="Enter City"
+            />
+            <Button onClick={handleSubmit} variant="dark" type="submit">
+              GO
+            </Button>
+          </Form.Group>
+        </Col>
+        {store.searchQuery.data_loaded && (
+          <Col>
+            <div className="queryName">
+              <h1>{store.searchQuery.search_data.data.name}</h1>
+            </div>
+          </Col>
+        )}
+      </Row>
+    </Container>
   );
 }
 

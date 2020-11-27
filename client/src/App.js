@@ -28,9 +28,7 @@ function App() {
   }
   return (
     <Router>
-      <div className="container-fluid">
         <SearchBar weatherCall={weatherCall} />
-      </div>
       <Switch>
         <Route path="/Main">
           <Main />

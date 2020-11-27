@@ -8,7 +8,7 @@ const Results = () => {
   const imageIcon = `/icons/${dataSet.weather[0].icon}.png`;
   return (
     <Container>
-      <Row className="results">
+      <Row className="d-inline-flex mx-auto results">
         <Col>
           <div className="temp">
             {dataSet.main.temp}
@@ -22,7 +22,7 @@ const Results = () => {
           <div className="currentCond">{dataSet.weather[0].main}</div>
         </Col>
       </Row>
-      <Row className="results">
+      <Row className="d-inline-flex results">
         <Col>
           <Card className="shadow tempCard">
             <Card.Header className="text-center" as="h5">
