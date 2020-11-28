@@ -15,11 +15,18 @@ function App() {
   const store = useSelector(store => store, shallowEqual);
   const dispatch = useDispatch();
   const APIkey = '08bea1b85d0458c294c28493bcc4e4fe';
+  let lat;
+  let lon;
   const weatherCall = (searchQuery) => {
     axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=${APIkey}&units=imperial`)
       .then(response => {
-        dispatch({ type: SEARCH_DATA, search_data: response });
+        lat = response.data.coord.lat;
+        lon = response.data.coord.lon;
+        axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIkey}&units=imperial`).then(data => {  
+        console.log(data);
+        dispatch({ type: SEARCH_DATA, search_data: data });
         dispatch({ type: DATA_LOADED });
+      })
       })
       .catch(err => console.log(err));
   }
@@ -28,7 +35,7 @@ function App() {
         <SearchBar weatherCall={weatherCall} />
       <Switch>
         <Route path="/Main">
-          <Main APIkey={APIkey} />
+          <Main />
         </Route>
       </Switch>
     </Router>

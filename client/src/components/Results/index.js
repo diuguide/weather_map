@@ -4,31 +4,20 @@ import { Row, Col, Card, Container } from "react-bootstrap";
 import { useSelector, shallowEqual } from "react-redux";
 
 
-const Results = ({ APIkey }) => {
+const Results = () => {
   const store = useSelector((store) => store, shallowEqual);
   
   console.log("store inside Results: ", store);
 
   const dataSet = store.searchQuery.search_data.data;
-  const imageIcon = `/icons/${dataSet.weather[0].icon}.png`;
-  const lat = store.searchQuery.search_data.data.coord.lat;
-  const lon = store.searchQuery.search_data.data.coord.lon
+  const imageIcon = `/icons/${dataSet.current.weather[0].icon}.png`;
 
-useEffect(() => {
-const fetchData = () => {
-    axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${APIkey}&units=imperial`).then(responseTwo => {
-        console.log('second api call response: ', responseTwo)
-      })
-  }
-  fetchData();
-}, [APIkey, lat, lon]);
-  
   return (
     <Container>
       <Row className="d-inline-flex mx-auto results">
         <Col>
           <div className="temp">
-            {dataSet.main.temp}
+            {dataSet.current.temp}
             <span className="fSymbol">&deg;F</span>
           </div>
         </Col>
@@ -36,7 +25,7 @@ const fetchData = () => {
           <div className="imgIcon">
             <img alt="weathericon" src={imageIcon}></img>
           </div>
-          <div className="currentCond">{dataSet.weather[0].main}</div>
+          <div className="currentCond">{dataSet.current.weather[0].main}</div>
         </Col>
       </Row>
       <Row className="d-inline-flex results">
@@ -46,7 +35,7 @@ const fetchData = () => {
               Humidity
             </Card.Header>
             <div className="humidityValue">
-              {dataSet.main.humidity}
+              {dataSet.current.humidity}
               <span className="degreeSymbol">%</span>
             </div>
           </Card>
@@ -57,7 +46,7 @@ const fetchData = () => {
               Wind Speed
             </Card.Header>
             <div className="windSpdValue">
-              {dataSet.wind.speed}
+              {dataSet.current.wind_speed}
               <span className="mphSymbol">mph</span>
             </div>
           </Card>
@@ -68,7 +57,7 @@ const fetchData = () => {
               Pressure
             </Card.Header>
             <div className="pressureValue">
-              {dataSet.main.pressure}
+              {dataSet.current.pressure}
               <span className="mbarSymbol">mbar</span>
             </div>
           </Card>

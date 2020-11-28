@@ -1,10 +1,9 @@
-import { DATA_LOADED, RECENT_SEARCH, SEARCH_DATA, ONE_CALL } from '../actions/types';
+import { DATA_LOADED, RECENT_SEARCH, SEARCH_DATA } from '../actions/types';
 
 const initialState = {
     recent_search: '',
     search_data: {},
     data_loaded: false,
-    one_call: {}
 }
 
  const Actions = (state = initialState, action) => {

@@ -50,7 +50,7 @@ function SearchBar({ weatherCall }) {
         {store.searchQuery.data_loaded && (
           <Col>
             <div className="queryName">
-              <h1>{store.searchQuery.search_data.data.name}</h1>
+              <h1>{store.searchQuery.recent_search}</h1>
             </div>
           </Col>
         )}

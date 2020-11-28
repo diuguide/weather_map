@@ -1,13 +1,16 @@
-import { Row, Col, Container } from 'react-bootstrap';
 import Results from '../components/Results';
+import Hourly from '../components/Hourly';
 import { useSelector, shallowEqual } from "react-redux";
 
-const Main = ({ APIkey }) => {
+const Main = () => {
     const store = useSelector((store) => store, shallowEqual);
     return (
         <>
         {store.searchQuery.data_loaded && (
-        <Results APIkey={APIkey} />
+        <Results />
+        )}
+        {store.searchQuery.data_loaded && (
+        <Hourly />
         )}
         </>
     )
