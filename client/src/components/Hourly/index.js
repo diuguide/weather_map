@@ -1,11 +1,15 @@
 import { Row, Col, Table, Container } from "react-bootstrap";
 import { useSelector, shallowEqual } from "react-redux";
+import * as moment from 'moment';
+import momentTz from 'moment-timezone';
 
 const Hourly = () => {
   const store = useSelector((store) => store, shallowEqual);
   const dataSet = store.searchQuery.search_data.data.hourly;
   const dataSetMap = dataSet.filter((data, i) => i < 12);
+  const time = moment().format('hh:mm:ss');
   
+  console.log('time: ', time);
   return (
     <Container>
       <Row>
@@ -23,10 +27,10 @@ const Hourly = () => {
               {dataSetMap.map((data, i) => {
                 return (
                   <tr key={i}>
-                  <td>{data.dt}</td>
-                  <td>{data.feels_like}</td>
-                  <td>{data.humidity}</td>
-                  <td>{data.wind_speed}</td>
+                  <td>{momentTz.tz(`11:15:00`, 'America/Toronto')}</td>
+                  <td>{data.feels_like} &deg;F</td>
+                  <td>{data.humidity} %</td>
+                  <td>{data.wind_speed} mph</td>
                 </tr>
                 )
               })}
