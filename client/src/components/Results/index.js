@@ -1,8 +1,5 @@
-import axios from 'axios';
-import { useEffect } from 'react';
 import { Row, Col, Card, Container } from "react-bootstrap";
 import { useSelector, shallowEqual } from "react-redux";
-
 
 const Results = () => {
   const store = useSelector((store) => store, shallowEqual);

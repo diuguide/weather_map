@@ -12,7 +12,6 @@ import './App.css';
 import { DATA_LOADED, SEARCH_DATA } from './actions/types';
 
 function App() {
-  const store = useSelector(store => store, shallowEqual);
   const dispatch = useDispatch();
   const APIkey = '08bea1b85d0458c294c28493bcc4e4fe';
   let lat;
@@ -29,6 +28,7 @@ function App() {
       })
       })
       .catch(err => console.log(err));
+
   }
   return (
     <Router>
