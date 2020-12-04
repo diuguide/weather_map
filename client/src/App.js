@@ -5,7 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import axios from 'axios';
-import { useSelector, useDispatch, shallowEqual } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import Main from './pages/Main';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
@@ -13,7 +13,7 @@ import { DATA_LOADED, SEARCH_DATA } from './actions/types';
 
 function App() {
   const dispatch = useDispatch();
-  const APIkey = '08bea1b85d0458c294c28493bcc4e4fe';
+  const APIkey = process.env.API_KEY;
   let lat;
   let lon;
   const weatherCall = (searchQuery) => {
