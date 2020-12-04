@@ -18,7 +18,7 @@ function App() {
   let lat;
   let lon;
   const weatherCall = (searchQuery) => {
-    axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=${APIkey}&units=imperial`)
+    axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=${APIkey}&units=imperial`)
       .then(response => {
         lat = response.data.coord.lat;
         lon = response.data.coord.lon;
