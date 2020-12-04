@@ -32,7 +32,7 @@ function SearchBar({ weatherCall }) {
   return (
     <Container>
       <Row className="searchCont d-inline-flex">
-        <Col>
+        <Col className="col-4">
           <Form.Group
             className="d-inline-flex mt-2 searchBar"
             controlId="formBasicSearch"
@@ -43,17 +43,15 @@ function SearchBar({ weatherCall }) {
               type="search"
               placeholder="Enter City"
             />
-            <Button onClick={handleSubmit} variant="dark" type="submit">
-              GO
-            </Button>
+            <Button className="bg-dark submitButton" onClick={handleSubmit}><div>GO</div></Button>
           </Form.Group>
         </Col>
         {store.searchQuery.data_loaded && (
-          <Col className="d-inline-flex">
+          <Col className="col-8 d-inline-flex">
             <div className="queryName">
-              <h1>{store.searchQuery.recent_search}</h1>
+              <h1>{store.searchQuery.recent_search} </h1>
             </div>
-            <div className="timeStamp"><h1> @ {moment().format('hh:mma')}</h1></div>
+            <div className="ml-1 timeStamp"><h1>@{moment().format('hh:mma')}</h1></div>
           </Col>
         )}
       </Row>
