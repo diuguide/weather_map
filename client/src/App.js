@@ -13,7 +13,7 @@ import { DATA_LOADED, SEARCH_DATA } from './actions/types';
 
 function App() {
   const dispatch = useDispatch();
-  const APIkey = process.env.API_KEY;
+  const APIkey = process.env.REACT_APP_API_KEY;
   let lat;
   let lon;
   const weatherCall = (searchQuery) => {
