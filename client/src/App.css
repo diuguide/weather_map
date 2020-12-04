@@ -39,9 +39,7 @@
   margin-bottom: 10px;
 }
 .hourlyTable {
-  display: flex;
-  margin-top: 20px;
-  width: 658px;
+  width: 660px;
  }
 .hourTable, .dataTable {
   width: 175px;
@@ -56,6 +54,12 @@
 .tFoot {
   display: none;
 }
-.tHead {
-  display: none;
+.tHourly {
+  text-align: center;
+}
+.dailyTable {
+  width: 660px;
+}
+.tDaily {
+  text-align: center;
 }

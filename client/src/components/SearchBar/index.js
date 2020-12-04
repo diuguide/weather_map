@@ -43,7 +43,7 @@ function SearchBar({ weatherCall }) {
               type="search"
               placeholder="Enter City"
             />
-            <Button className="bg-dark submitButton" onClick={handleSubmit}><div>GO</div></Button>
+            <Button as="input" type="button" value="Go" onClick={handleSubmit} />
           </Form.Group>
         </Col>
         {store.searchQuery.data_loaded && (

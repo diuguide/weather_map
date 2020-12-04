@@ -1,5 +1,6 @@
 import Results from '../components/Results';
 import Hourly from '../components/Hourly';
+import Daily from '../components/Daily';
 import { useSelector, shallowEqual } from "react-redux";
 
 const Main = () => {
@@ -11,6 +12,9 @@ const Main = () => {
         )}
         {store.searchQuery.data_loaded && (
         <Hourly />
+        )}
+        {store.searchQuery.data_loaded && (
+        <Daily />
         )}
         </>
     )
