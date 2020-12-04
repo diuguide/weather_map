@@ -32,6 +32,29 @@
   margin-bottom: 10px;
 }
 .hourlyTable {
-  width: 660px;
   margin-top: 30px;
+  width: 660px;
+ }
+.hourCol {
+  font-size: 20px;
+  display:block;
+  width: 100px;
+}
+.tableBody {
+  display: flex;
+}
+.hourTable {
+  display: grid;
+  height: 50px;
+  font-size: 25px;
+  padding-top: 10px;
+  width: 125px;
+  text-align: center;
+}
+.dataTable {
+  height: 50px;
+  font-size: 25px;
+  padding-top: 10px;
+  width: 250px;
+  text-align: center;
 }
