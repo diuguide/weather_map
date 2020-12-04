@@ -41,10 +41,10 @@
 .hourlyTable {
   display: flex;
   margin-top: 20px;
-  width: 400px;
+  width: 658px;
  }
 .hourTable, .dataTable {
-  width: 100px;
+  width: 175px;
 }
 .hourBody, .dataBody {
   text-align: center;

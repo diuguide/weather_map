@@ -14,7 +14,7 @@ const Hourly = () => {
       <Row>
         <Col>
           <Table
-            className="shadow hourlyTable"
+            className="bg-light shadow hourlyTable"
             striped
             bordered
             hover
