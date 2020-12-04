@@ -4,7 +4,10 @@
   "description": "![GitHub top language](https://img.shields.io/github/languages/top/diuguide/symptom_tracker) [![GitHub license](https://img.shields.io/github/license/diuguide/symptom_tracker)](LICENSE) [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
     "start-watch": "nodemon index.js",
     "dev": "concurrently \"npm run start-watch\" \"cd client && npm start\""
   },
