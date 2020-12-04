@@ -39,32 +39,23 @@
   margin-bottom: 10px;
 }
 .hourlyTable {
+  display: flex;
   margin-top: 20px;
-  width: 660px;
+  width: 400px;
  }
-.hourCol {
-  font-size: 20px;
-  display:block;
+.hourTable, .dataTable {
   width: 100px;
 }
-.tableBody {
-  display: flex;
-}
-.hourTable {
-  display: grid;
-  height: 50px;
-  font-size: 25px;
-  padding-top: 10px;
-  width: 125px;
+.hourBody, .dataBody {
   text-align: center;
-}
-.dataTable {
-  height: 50px;
-  font-size: 25px;
-  padding-top: 10px;
-  width: 250px;
-  text-align: center;
+  border-top: 0px!important;
 }
 .timeStamp {
   padding-top: 0px;
+}
+.tFoot {
+  display: none;
+}
+.tHead {
+  display: none;
 }

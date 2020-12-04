@@ -8,7 +8,9 @@ const Hourly = () => {
 
   return (
     <Container>
-      <Row className="ml-1 mt-4"><h1>8 Hour Forecast</h1></Row>
+      <Row className="ml-1 mt-4">
+        <h1>8 Hour Forecast</h1>
+      </Row>
       <Row>
         <Col>
           <Table
@@ -18,28 +20,58 @@ const Hourly = () => {
             hover
             size="sm"
           >
-            <tbody className="tableBody">
-              <div>
+            <thead>
+              <tr className="tHead">
+                <td>Hour</td>
+                <td>Temp</td>
+                <td>Humdity</td>
+                <td>Wind Speed</td>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr className="tFoot">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tfoot>
+            <tbody className="hourBody">
+              <tr>
                 <td className="hourTable">+1 hour</td>
+              </tr>
+              <tr>
                 <td className="hourTable">+2 hours</td>
+              </tr>
+              <tr>
                 <td className="hourTable">+3 hours</td>
+              </tr>
+              <tr>
                 <td className="hourTable">+4 hours</td>
+              </tr>
+              <tr>
                 <td className="hourTable">+5 hours</td>
+              </tr>
+              <tr>
                 <td className="hourTable">+6 hours</td>
+              </tr>
+              <tr>
                 <td className="hourTable">+7 hours</td>
+              </tr>
+              <tr>
                 <td className="hourTable">+8 hours</td>
-              </div>
-              <div>
-                {dataSetMap.map((data, i) => {
-                  return (
-                    <tr key={i}>
-                      <td className="dataTable">{data.temp} &deg;F</td>
-                      <td className="dataTable">{data.humidity} %</td>
-                      <td className="dataTable">{data.wind_speed} mph</td>
-                    </tr>
-                  );
-                })}
-              </div>
+              </tr>
+            </tbody>
+            <tbody className="dataBody">
+              {dataSetMap.map((data, i) => {
+                return (
+                  <tr key={i}>
+                    <td className="dataTable">{data.temp} &deg;F</td>
+                    <td className="dataTable">{data.humidity} %</td>
+                    <td className="dataTable">{data.wind_speed} mph</td>
+                  </tr>
+                );
+              })}
             </tbody>
           </Table>
         </Col>
