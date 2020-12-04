@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { Button, Col, Row, Container } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import * as moment from 'moment';
 
 function SearchBar({ weatherCall }) {
   const store = useSelector((store) => store, shallowEqual);
@@ -30,7 +31,7 @@ function SearchBar({ weatherCall }) {
   };
   return (
     <Container>
-      <Row className="d-inline-flex">
+      <Row className="searchCont d-inline-flex">
         <Col>
           <Form.Group
             className="d-inline-flex mt-2 searchBar"
@@ -48,10 +49,11 @@ function SearchBar({ weatherCall }) {
           </Form.Group>
         </Col>
         {store.searchQuery.data_loaded && (
-          <Col>
+          <Col className="d-inline-flex">
             <div className="queryName">
               <h1>{store.searchQuery.recent_search}</h1>
             </div>
+            <div className="timeStamp"><h1> @ {moment().format('hh:mma')}</h1></div>
           </Col>
         )}
       </Row>

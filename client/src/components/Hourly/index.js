@@ -1,7 +1,5 @@
 import { Row, Col, Table, Container } from "react-bootstrap";
 import { useSelector, shallowEqual } from "react-redux";
-import * as moment from "moment";
-
 
 const Hourly = () => {
   const store = useSelector((store) => store, shallowEqual);

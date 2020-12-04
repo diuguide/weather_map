@@ -1,5 +1,12 @@
 .searchBar {
-  width: 300px;
+  width: 250px;
+}
+.queryName {
+  float: left;
+  padding-left: 25px;
+}
+.searchCont {
+  width: 700px;
 }
 .temp {
   text-align: center;
@@ -57,4 +64,7 @@
   padding-top: 10px;
   width: 250px;
   text-align: center;
+}
+.timeStamp {
+  padding-top: 0px;
 }
