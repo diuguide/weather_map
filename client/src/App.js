@@ -15,10 +15,6 @@ import { useEffect } from 'react';
 function App() {
   const dispatch = useDispatch();
   
-  // useEffect(() => {
-  //   const all = axios.get('/api').then(response => console.log('response GET app.js: ', response));
-  // }, [])
-  
   const weatherCall = (searchQuery) => {
     const APIkey = process.env.REACT_APP_API_KEY || '08bea1b85d0458c294c28493bcc4e4fe';
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=${APIkey}&units=imperial`)
@@ -32,13 +28,6 @@ function App() {
       })
       })
       .catch(err => console.log(err));
-      // axios.put('/api/updateRecentSearch', {
-      //   username: "everett.diuguid@gmail.com",
-      //   password: "Password1!",
-      //   recent_search: searchQuery
-      // }).then(res => console.log('res post: ', res))
-      // .catch(err => console.log(err))
-
   }
   return (
     <Router>
