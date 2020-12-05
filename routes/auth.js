@@ -2,16 +2,11 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth");
 
 // User Model
 const User = require("../models/Model");
-
-// Get All User Data
-router.get("/", (req, res) => {
-  User.find({})
-    .then((data) => res.json(data))
-    .catch((err) => console.log("Error GET: ", err));
-});
+const { findById } = require("../models/Model");
 
 // Create New User
 router.post("/User", (req, res) => {
@@ -23,7 +18,7 @@ router.post("/User", (req, res) => {
     if (!user)
       return res.status(400).json({ msg: "Username does not exsist!" });
 
-    bcrypt.compare(password, user.password).then(isMatch => {
+    bcrypt.compare(password, user.password).then((isMatch) => {
       if (!isMatch) return res.status(400).json({ msg: "Incorrect Password" });
 
       jwt.sign({ id: user.id }, "hello", { expiresIn: 3600 }, (err, token) => {
@@ -39,5 +34,11 @@ router.post("/User", (req, res) => {
     });
   });
 });
+
+router.get('/User', auth, (req, res) => {
+    User.findById(req.username.id)
+    .select('-password')
+    .then(user => res.json(user));
+})
 
 module.exports = router;

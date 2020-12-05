@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const jwt = require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
+const auth = require("../middleware/auth");
 
 // User Model
 const User = require("../models/Model");
@@ -37,13 +38,13 @@ router.post("/User", (req, res) => {
             "hello",
             { expiresIn: 3600 },
             (err, token) => {
-              if(err) throw err;
+              if (err) throw err;
               res.json({
                 token,
                 user: {
                   id: user.id,
                   username: user.username,
-                }
+                },
               });
             }
           );
@@ -61,43 +62,43 @@ router.delete("/User/:id", (req, res) => {
 });
 
 // Update Home
-router.put('/updateHome', (req, res) => {
+router.put("/updateHome", auth, (req, res) => {
   User.findOneAndUpdate(
     { username: req.body.username },
     { home: req.body.home },
     { safe: true, new: true },
     (error, data) => {
       if (error) {
-        console.log("error PUT: ", error)
+        console.log("error PUT: ", error);
       } else if (data === null) {
         res.send("Username does not exsist");
         console.log("Username does not exsist");
       } else {
         res.send(data);
-        console.log("Home Updated: ", data)
+        console.log("Home Updated: ", data);
       }
     }
-  ).catch(err => console.log("Error Catch: ", err))
+  ).catch((err) => console.log("Error Catch: ", err));
 });
 
 // Update Recent Search
-router.put('/updateRecentSearch', (req, res) => {
+router.put("/updateRecentSearch", auth, (req, res) => {
   User.findOneAndUpdate(
     { username: req.body.username },
     { $addToSet: { recent_search: req.body.recent_search } },
     { safe: true, new: true },
     (error, data) => {
       if (error) {
-        console.log("error PUT: ", error)
+        console.log("error PUT: ", error);
       } else if (data === null) {
         res.send("Username does not exsist");
         console.log("Username does not exsist");
       } else {
         res.send(data);
-        console.log("Success PUT", data)
+        console.log("Success PUT", data);
       }
     }
-  ).catch(err => console.log("Error Catch: ", err))
+  ).catch((err) => console.log("Error Catch: ", err));
 });
 
 module.exports = router;
