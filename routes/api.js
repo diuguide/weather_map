@@ -1,31 +1,63 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken');
 
 // User Model
-const User = require('../models/Model');
+const User = require("../models/Model");
 
 // Get All User Data
-router.get('/', (req, res) => {
+router.get("/", (req, res) => {
   User.find({})
-    .then(data => res.json(data))
-    .catch(err => console.log('Error GET: ', err));
-})
+    .then((data) => res.json(data))
+    .catch((err) => console.log("Error GET: ", err));
+});
 
 // Create New User
-router.post('/User', (req, res) => {
-  User.create(req.body)
-    .then(data => {
-      res.json(data)
-      console.log('Success PUT: ', req.body);
-    })
-    .catch(err => console.log('Error PUT: ', err));
+router.post("/User", (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).json({ msg: "Please Enter username and password" });
+  }
+  User.findOne({ username }).then((user) => {
+    if (user) return res.status(400).json({ msg: "Username already exsists" });
+    const newUser = new User({
+      username,
+      password,
+    });
+
+    // create salt & hash
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(newUser.password, salt, (err, hash) => {
+        if (err) throw err;
+        newUser.password = hash;
+        newUser.save().then((user) => {
+          jwt.sign(
+            { id: user.id },
+            "hello",
+            { expiresIn: 3600 },
+            (err, token) => {
+              if(err) throw err;
+              res.json({
+                token,
+                user: {
+                  id: user.id,
+                  username: user.username,
+                }
+              });
+            }
+          );
+        });
+      });
+    });
+  });
 });
 
 // Delete User By ID
-router.delete('/User/:id', (req, res) => {
-  User.findOneAndDelete({ '_id': req.params.id })
-    .then(data => res.json(data))
-    .catch(err => console.log('Error DELETE: ', err))
+router.delete("/User/:id", (req, res) => {
+  User.findOneAndDelete({ _id: req.params.id })
+    .then((data) => res.json(data))
+    .catch((err) => console.log("Error DELETE: ", err));
 });
 
 // Update Home
