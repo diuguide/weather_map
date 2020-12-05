@@ -16,7 +16,7 @@ function App() {
   const dispatch = useDispatch();
   
   const weatherCall = (searchQuery) => {
-    const APIkey = process.env.REACT_APP_API_KEY || '08bea1b85d0458c294c28493bcc4e4fe';
+    const APIkey = process.env.REACT_APP_API_KEY;
     axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=${APIkey}&units=imperial`)
       .then(response => {
         const lat = response.data.coord.lat;

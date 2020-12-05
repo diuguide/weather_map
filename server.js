@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const routes = require('./routes/api');
+const auth = require('./routes/auth');
 
 //express middleware
 app.use(express.urlencoded({ extended: true }));
@@ -27,6 +28,7 @@ mongoose.Promise = global.Promise;
 
 // connect to routes
 app.use('/api', routes);
+app.use('/auth', auth);
 
 //Start the api server
 app.listen(port, () => {
