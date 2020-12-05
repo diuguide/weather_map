@@ -7,9 +7,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { DATA_LOADED, SEARCH_DATA } from "./actions/types";
 import { useEffect } from "react";
+import { loadUser } from "./actions/authAction";
+import store from "./store";
 
 function App() {
   const dispatch = useDispatch();
+  useEffect(() => {
+    store.dispatch(loadUser());
+  });
 
   const weatherCall = (searchQuery) => {
     const APIkey = process.env.REACT_APP_API_KEY;
