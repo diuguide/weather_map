@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Col, Row, Container } from "react-bootstrap";
+import RegisterModal from "../auth/RegisterModal";
+import LoginModal from "../auth/LoginModal";
 import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import * as moment from 'moment';
 
 function SearchBar({ weatherCall }) {
   const store = useSelector((store) => store, shallowEqual);
@@ -29,31 +30,47 @@ function SearchBar({ weatherCall }) {
     setSearchQuery("");
     history.push("/Main");
   };
+
+  const [showRegister, setShowRegister] = useState(false);
+  const handleCloseRegister = () => setShowRegister(false);
+  const handleShowRegister = () => setShowRegister(true);
+
+  const [showLogin, setShowLogin] = useState(false);
+  const handleCloseLogin = () => setShowLogin(false);
+  const handleShowLogin = () => setShowLogin(true);
+
   return (
     <Container>
-      <Row className="searchCont d-inline-flex">
-        <Col className="col-4">
-          <Form.Group
-            className="d-inline-flex mt-2 searchBar"
-            controlId="formBasicSearch"
-          >
+      <Row className="mt-2">
+        <Col>
+          <Form.Group>
             <Form.Control
               onChange={handleChange}
               value={searchQuery}
               type="search"
               placeholder="Enter City"
             />
-            <Button as="input" type="button" value="Go" onClick={handleSubmit} />
           </Form.Group>
         </Col>
-        {store.searchQuery.data_loaded && (
-          <Col className="col-8 d-inline-flex">
-            <div className="queryName">
-              <h1>{store.searchQuery.recent_search} </h1>
-            </div>
-            <div className="ml-1 timeStamp"><h1>@{moment().format('hh:mma')}</h1></div>
-          </Col>
-        )}
+        <Col>
+          <Button
+            as="input"
+            type="button"
+            value="Search"
+            onClick={handleSubmit}
+          />
+          {"  "}
+          <Button as="input" type="button" value="Sign Up" onClick={handleShowRegister} />{"  "}
+          <Button as="input" type="button" value="Login" onClick={handleShowLogin} />
+        </Col>
+        <RegisterModal
+          showRegister={showRegister}
+          handleCloseRegister={handleCloseRegister}
+        />
+        <LoginModal 
+          showLogin={showLogin}
+          handleCloseLogin={handleCloseLogin}
+        />
       </Row>
     </Container>
   );
