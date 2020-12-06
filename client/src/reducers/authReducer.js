@@ -19,6 +19,7 @@ const initialState = {
 const Authorize = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOADING:
+      localStorage.removeItem('token');
       return {
         ...state,
         isLoading: true,

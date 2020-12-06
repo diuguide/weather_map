@@ -5,6 +5,7 @@ import RegisterModal from "../auth/RegisterModal";
 import LoginModal from "../auth/LoginModal";
 import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { LOGOUT_SUCCESS } from "../../actions/types";
 
 function SearchBar({ weatherCall }) {
   const store = useSelector((store) => store, shallowEqual);
@@ -30,6 +31,12 @@ function SearchBar({ weatherCall }) {
     setSearchQuery("");
     history.push("/Main");
   };
+
+  const handleLogout = () => {
+    dispatch({ type: LOGOUT_SUCCESS })
+    alert('Logged out!')
+    window.location.reload();
+  }
 
   const [showRegister, setShowRegister] = useState(false);
   const handleCloseRegister = () => setShowRegister(false);
@@ -59,9 +66,19 @@ function SearchBar({ weatherCall }) {
             value="Search"
             onClick={handleSubmit}
           />
-          {"  "}
-          <Button as="input" type="button" value="Sign Up" onClick={handleShowRegister} />{"  "}
+
+          {!store.auth.isAuthenticated &&
+          <Button as="input" type="button" value="Sign Up" onClick={handleShowRegister} />
+          }
+          
+          {!store.auth.isAuthenticated &&
           <Button as="input" type="button" value="Login" onClick={handleShowLogin} />
+          }
+
+          {store.auth.isAuthenticated &&
+          <Button as="input" type="button" value="Logout" onClick={handleLogout} />
+          }
+          
         </Col>
         <RegisterModal
           showRegister={showRegister}
@@ -71,6 +88,18 @@ function SearchBar({ weatherCall }) {
           showLogin={showLogin}
           handleCloseLogin={handleCloseLogin}
         />
+      </Row>
+      <Row>
+        <Col>
+        {store.auth.isAuthenticated &&
+        <h6>Hello, {store.auth.user.username}</h6>
+        }
+        </Col>
+        <Col>
+        {store.auth.isAuthenticated &&
+        <Button as="input" type="button" value="User Settings" />
+        }
+        </Col>
       </Row>
     </Container>
   );
