@@ -10,41 +10,45 @@ const Results = () => {
   const imageIcon = `/icons/${dataSet.current.weather[0].icon}.png`;
 
   return (
-    <>
-      <Row className="d-block mx-auto results">
-        <Col className="d-inline-flex">
-          <div className="temp">
-            {dataSet.current.temp}
-            <span className="fSymbol">&deg;F</span>
-          </div>
-          <img className="imgIcon" alt="weathericon" src={imageIcon}></img>
-        </Col>
-      </Row>
-      <Row className="d-inline-flex results">
-        <Col>
-          <Card className="shadow tempCard">
-            <Card.Header className="text-center" as="h5">
-              Humidity
-            </Card.Header>
-            <div className="humidityValue">
-              {dataSet.current.humidity}
-              <span className="degreeSymbol">%</span>
+    <Row className="bg-light mt-2 pb-3 results">
+      <Col>
+        <Row className="d-inline-flex">
+          <Col>
+            <div className="temp">
+              {dataSet.current.temp}
+              <span className="fSymbol">&deg;F</span>
             </div>
-          </Card>
-        </Col>
-        <Col>
-          <Card className="shadow tempCard">
-            <Card.Header className="text-center" as="h5">
-              Wind
-            </Card.Header>
-            <div className="windSpdValue">
-              {dataSet.current.wind_speed}
-              <span className="mphSymbol">mph</span>
-            </div>
-          </Card>
-        </Col>
-      </Row>
-    </>
+          </Col>
+          <Col>
+            <img className="imgIcon" alt="weathericon" src={imageIcon}></img>
+          </Col>
+        </Row>
+        <Row className="d-inline-flex">
+          <Col>
+            <Card className="tempCard">
+              <Card.Header className="text-center" as="h5">
+                Humidity
+              </Card.Header>
+              <div className="humidityValue">
+                {dataSet.current.humidity}
+                <span className="degreeSymbol">%</span>
+              </div>
+            </Card>
+          </Col>
+          <Col>
+            <Card className="tempCard">
+              <Card.Header className="text-center" as="h5">
+                Wind
+              </Card.Header>
+              <div className="windSpdValue">
+                {dataSet.current.wind_speed}
+                <span className="mphSymbol">mph</span>
+              </div>
+            </Card>
+          </Col>
+        </Row>
+      </Col>
+    </Row>
   );
 };
 

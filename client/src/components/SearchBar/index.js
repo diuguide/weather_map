@@ -70,7 +70,7 @@ function SearchBar({ weatherCall }) {
 
   return (
     <>
-      <Row className="bg-light mt-3 searchBar">
+      <Row className="bg-light pt-2 pb-3 searchBar">
         <Col>
           <Row className="mt-2">
             <Col>

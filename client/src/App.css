@@ -1,22 +1,36 @@
+
 .loggedConsole {
   border: 1px solid lightgrey;
   color: white;
   border-radius: 10px;
-  padding-bottom: 10px;
+  width: 375px;
+}
+.results {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
   width: 375px;
 }
 .searchBar {
   border: 1px solid lightgrey;
   border-radius: 10px;
-  padding-bottom: 10px;
   width: 375px;
 }
 .queryName {
   float: left;
   padding-left: 25px;
 }
+.hourlyCont {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  width: 375px;
+}
+.dailyCont {
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  width: 375px;
+}
 .imgIcon {
-  width: 60px;
+  width: 80px;
 }
 .temp {
   text-align: center;
@@ -46,10 +60,10 @@
   margin-bottom: 10px;
 }
 .hourlyTable {
-  width: 360px;
+  width: 343px;
 }
 .dailyTable {
-  width: 360px;
+  width: 343px;
 }
 .hourBody, .dataBody {
   text-align: center;
