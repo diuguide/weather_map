@@ -1,16 +1,11 @@
 import { Row, Col, Table, Container } from "react-bootstrap";
 import { useSelector, shallowEqual } from "react-redux";
-import * as moment from 'moment';
+import * as moment from "moment";
 const Daily = () => {
   const store = useSelector((store) => store, shallowEqual);
   const dataSet = store.searchQuery.search_data.data.daily;
-  console.log('dataSet.Daily: ', dataSet)
-//   const currentTimeApi = store.searchQuery.search_data.data.current.dt;
-//   const timeForCall = moment.unix(currentTimeApi);
-//   console.log('current time of call: ', moment(timeForCall).format('hh:mm:ss'));
-
   return (
-    <Container>
+    <>
       <Row className="ml-1 mt-4">
         <h1>8 Day Forecast</h1>
       </Row>
@@ -35,8 +30,13 @@ const Daily = () => {
               {dataSet.map((data, i) => {
                 return (
                   <tr key={i}>
-                    <td className="dataTable">{moment.unix(data.dt).format('dddd M/D')}</td>
-                    <td className="dataTable">Max: {data.temp.max} &deg;F<br></br>Min: {data.temp.min} &deg;F</td>
+                    <td className="dataTable">
+                      {moment.unix(data.dt).format("dddd M/D")}
+                    </td>
+                    <td className="dataTable">
+                      Max: {data.temp.max} &deg;F<br></br>Min: {data.temp.min}{" "}
+                      &deg;F
+                    </td>
                     <td className="dataTable">{data.humidity} %</td>
                     <td className="dataTable">{data.wind_speed} mph</td>
                   </tr>
@@ -47,7 +47,7 @@ const Daily = () => {
         </Col>
       </Row>
       <Row></Row>
-    </Container>
+    </>
   );
 };
 

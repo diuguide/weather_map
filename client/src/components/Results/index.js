@@ -3,26 +3,21 @@ import { useSelector, shallowEqual } from "react-redux";
 
 const Results = () => {
   const store = useSelector((store) => store, shallowEqual);
-  
+
   console.log("store inside Results: ", store);
 
   const dataSet = store.searchQuery.search_data.data;
   const imageIcon = `/icons/${dataSet.current.weather[0].icon}.png`;
 
   return (
-    <Container>
-      <Row className="d-inline-flex mx-auto results">
-        <Col>
+    <>
+      <Row className="d-block mx-auto results">
+        <Col className="d-inline-flex">
           <div className="temp">
             {dataSet.current.temp}
             <span className="fSymbol">&deg;F</span>
           </div>
-        </Col>
-        <Col>
-          <div className="imgIcon">
-            <img alt="weathericon" src={imageIcon}></img>
-          </div>
-          <div className="currentCond">{dataSet.current.weather[0].main}</div>
+          <img className="imgIcon" alt="weathericon" src={imageIcon}></img>
         </Col>
       </Row>
       <Row className="d-inline-flex results">
@@ -40,7 +35,7 @@ const Results = () => {
         <Col>
           <Card className="shadow tempCard">
             <Card.Header className="text-center" as="h5">
-              Wind Speed
+              Wind
             </Card.Header>
             <div className="windSpdValue">
               {dataSet.current.wind_speed}
@@ -48,19 +43,8 @@ const Results = () => {
             </div>
           </Card>
         </Col>
-        <Col>
-          <Card className="shadow tempCard">
-            <Card.Header className="text-center" as="h5">
-              Pressure
-            </Card.Header>
-            <div className="pressureValue">
-              {dataSet.current.pressure}
-              <span className="mbarSymbol">mbar</span>
-            </div>
-          </Card>
-        </Col>
       </Row>
-    </Container>
+    </>
   );
 };
 

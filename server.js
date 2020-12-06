@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const routes = require("./routes/api");
+const routes = require("./routes/apiSearch");
 const auth = require("./routes/auth");
 
 //express middleware

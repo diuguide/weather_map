@@ -1,13 +1,11 @@
-import axios from 'axios';
+import axios from "axios";
 import { Button, Modal, Form, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import { REGISTER_SUCCESS, USER_LOADING } from "../../actions/types";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const RegisterModal = ({ showRegister, handleCloseRegister }) => {
-  const store = useSelector((store) => store, shallowEqual);
   const dispatch = useDispatch();
-  console.log('store REGISTER MODAL: ', store);
 
   const [loginCreds, setLoginCreds] = useState({
     username: "",
@@ -22,7 +20,7 @@ const RegisterModal = ({ showRegister, handleCloseRegister }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     handleCloseRegister();
-    dispatch({ type: USER_LOADING })
+    dispatch({ type: USER_LOADING });
     axios
       .post("/api/User", {
         username: loginCreds.username,
@@ -31,8 +29,8 @@ const RegisterModal = ({ showRegister, handleCloseRegister }) => {
       .then((response) => {
         console.log("response login: ", response);
         if (response.status === 200) {
-          dispatch({ type: REGISTER_SUCCESS, payload: response.data})
-          alert('Signed Up! You are now logged in')
+          dispatch({ type: REGISTER_SUCCESS, payload: response.data });
+          alert("Signed Up! You are now logged in");
         }
       })
       .catch((err) => console.log(err));
@@ -52,7 +50,7 @@ const RegisterModal = ({ showRegister, handleCloseRegister }) => {
           />
         </Form.Group>
         <Form.Group>
-        <Form.Control
+          <Form.Control
             type="password"
             name="password"
             id="inputPassword"

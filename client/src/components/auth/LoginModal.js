@@ -1,6 +1,6 @@
 import { Button, Modal, Form, Row, Col } from "react-bootstrap";
 import { useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from "axios";
 import { LOGIN_SUCCESS, USER_LOADING } from "../../actions/types";
 
@@ -10,16 +10,16 @@ const LoginModal = ({ showLogin, handleCloseLogin }) => {
     username: "",
     password: "",
   });
-  
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setLoginCreds({ ...loginCreds, [name]: value });
   };
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     handleCloseLogin();
-    dispatch({ type: USER_LOADING })
+    dispatch({ type: USER_LOADING });
     
     axios
       .post("/auth/User", {
@@ -28,11 +28,12 @@ const LoginModal = ({ showLogin, handleCloseLogin }) => {
       })
       .then((response) => {
         if (response.status === 200) {
-          dispatch({ type: LOGIN_SUCCESS, payload: response.data})
-          alert('Logged in!');
+          dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+          alert("Logged in!");
         }
       })
       .catch((err) => console.log(err));
+      
   };
 
   return (

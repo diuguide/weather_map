@@ -8,7 +8,7 @@ const Hourly = () => {
   const dataSetMap = dataSet.filter((data, i) => i < 8);
 
   return (
-    <Container>
+    <>
       <Row className="ml-1 mt-4">
         <h1>8 Hour Forecast</h1>
       </Row>
@@ -45,7 +45,7 @@ const Hourly = () => {
         </Col>
       </Row>
       <Row></Row>
-    </Container>
+    </>
   );
 };
 

@@ -1,21 +1,33 @@
+.loggedConsole {
+  border: 1px solid lightgrey;
+  color: white;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  width: 375px;
+}
 .searchBar {
-  width: 250px;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  padding-bottom: 10px;
+  width: 375px;
 }
 .queryName {
   float: left;
   padding-left: 25px;
 }
-
+.imgIcon {
+  width: 60px;
+}
 .temp {
   text-align: center;
-  font-size: 150px;
+  font-size: 85px;
 }
 .humidityValue {
-  font-size: 50px;
+  font-size: 25px;
   text-align: center;
 }
 .windSpdValue {
-  font-size: 50px;
+  font-size: 25px;
   text-align: center;
 }
 .pressureValue {
@@ -23,24 +35,21 @@
   text-align: center;
 }
 .tempCard {
-  width: 200px;
-  height: 110px;
+  width: 140px;
+  height: 80px;
 }
 .degreeSymbol, .fSymbol, .mphSymbol, .mbarSymbol {
   font-size: 25px;
-}
-.currentCond {
-  padding-left: 40px;
 }
 .results {
   line-height: 1;
   margin-bottom: 10px;
 }
 .hourlyTable {
-  width: 660px;
- }
-.hourTable, .dataTable {
-  width: 175px;
+  width: 360px;
+}
+.dailyTable {
+  width: 360px;
 }
 .hourBody, .dataBody {
   text-align: center;
@@ -54,9 +63,6 @@
 }
 .tHourly {
   text-align: center;
-}
-.dailyTable {
-  width: 660px;
 }
 .tDaily {
   text-align: center;

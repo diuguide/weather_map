@@ -5,7 +5,8 @@ import RegisterModal from "../auth/RegisterModal";
 import LoginModal from "../auth/LoginModal";
 import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { LOGOUT_SUCCESS } from "../../actions/types";
+import { LOGOUT_SUCCESS, RECENT_SEARCH } from "../../actions/types";
+import axios from "axios";
 
 function SearchBar({ weatherCall }) {
   const store = useSelector((store) => store, shallowEqual);
@@ -15,28 +16,49 @@ function SearchBar({ weatherCall }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [recentSearch, setRecentSearch] = useState([]);
 
-  useEffect(() => {
-    localStorage.setItem("recent_search", JSON.stringify(recentSearch));
-  });
+  useEffect(() => {});
 
   const handleChange = (e) => {
     const search = e.target.value;
     setSearchQuery(search);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    localStorage.setItem("recent_search", JSON.stringify(recentSearch));
+    let config = {
+      headers: {
+        "x-auth-token": `${store.auth.token}`,
+      },
+    };
     setRecentSearch((oldArray) => [...oldArray, searchQuery]);
+    if (store.auth.isAuthenticated) {
+      axios
+        .put(
+          "/api/updateRecentSearch",
+          {
+            username: store.auth.user.username,
+            recent_search: searchQuery,
+          },
+          config
+        )
+        .then((response) => {
+          console.log("api response PUT updateSearch", response);
+        })
+        .catch((err) => console.log(err));
+    }
+
     weatherCall(searchQuery);
-    dispatch({ type: "RECENT_SEARCH", recent_search: searchQuery });
+    dispatch({ type: RECENT_SEARCH, recent_search: searchQuery });
     setSearchQuery("");
     history.push("/Main");
   };
 
   const handleLogout = () => {
-    dispatch({ type: LOGOUT_SUCCESS })
-    alert('Logged out!')
+    dispatch({ type: LOGOUT_SUCCESS });
+    alert("Logged out!");
     window.location.reload();
-  }
+  };
 
   const [showRegister, setShowRegister] = useState(false);
   const handleCloseRegister = () => setShowRegister(false);
@@ -47,61 +69,86 @@ function SearchBar({ weatherCall }) {
   const handleShowLogin = () => setShowLogin(true);
 
   return (
-    <Container>
-      <Row className="mt-2">
+    <>
+      <Row className="bg-light mt-3 searchBar">
         <Col>
-          <Form.Group>
-            <Form.Control
-              onChange={handleChange}
-              value={searchQuery}
-              type="search"
-              placeholder="Enter City"
-            />
-          </Form.Group>
-        </Col>
-        <Col>
-          <Button
-            as="input"
-            type="button"
-            value="Search"
-            onClick={handleSubmit}
-          />
-
-          {!store.auth.isAuthenticated &&
-          <Button as="input" type="button" value="Sign Up" onClick={handleShowRegister} />
-          }
-          
-          {!store.auth.isAuthenticated &&
-          <Button as="input" type="button" value="Login" onClick={handleShowLogin} />
-          }
-
-          {store.auth.isAuthenticated &&
-          <Button as="input" type="button" value="Logout" onClick={handleLogout} />
-          }
-          
-        </Col>
-        <RegisterModal
-          showRegister={showRegister}
-          handleCloseRegister={handleCloseRegister}
-        />
-        <LoginModal 
-          showLogin={showLogin}
-          handleCloseLogin={handleCloseLogin}
-        />
-      </Row>
-      <Row>
-        <Col>
-        {store.auth.isAuthenticated &&
-        <h6>Hello, {store.auth.user.username}</h6>
-        }
-        </Col>
-        <Col>
-        {store.auth.isAuthenticated &&
-        <Button as="input" type="button" value="User Settings" />
-        }
+          <Row className="mt-2">
+            <Col>
+              <Form.Group>
+                <Form.Control
+                  onChange={handleChange}
+                  value={searchQuery}
+                  type="search"
+                  placeholder="Enter City"
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row className="mx-auto">
+            <Col>
+              <Button
+                id="searchBtn"
+                as="input"
+                type="button"
+                value="Search"
+                onClick={handleSubmit}
+              />
+            </Col>
+            <Col>
+              {!store.auth.isAuthenticated && (
+                <Button
+                  id="signupBtn"
+                  as="input"
+                  type="button"
+                  value="Sign Up"
+                  onClick={handleShowRegister}
+                />
+              )}
+            </Col>
+            <Col>
+              {!store.auth.isAuthenticated && (
+                <Button
+                  id="loginBtn"
+                  as="input"
+                  type="button"
+                  value="Login"
+                  onClick={handleShowLogin}
+                />
+              )}
+            </Col>
+          </Row>
         </Col>
       </Row>
-    </Container>
+      <RegisterModal
+        showRegister={showRegister}
+        handleCloseRegister={handleCloseRegister}
+      />
+      <LoginModal showLogin={showLogin} handleCloseLogin={handleCloseLogin} />
+      {store.auth.isAuthenticated && (
+        <Row className="bg-light mt-2 loggedConsole">
+          <Col>
+            <Row className="pl-4 mt-2 mx-auto">
+              <Col>
+                <h6>Hello, {store.auth.user.username}</h6>
+              </Col>
+            </Row>
+            <Row className="pl-4 mx-auto">
+              <Col>
+                <Button as="input" type="button" value="Options" />
+              </Col>
+              <Col>
+                  <Button
+                    as="input"
+                    type="button"
+                    value="Logout"
+                    onClick={handleLogout}
+                  />
+              </Col>
+            </Row>
+          </Col>
+        </Row>
+      )}
+    </>
   );
 }
 
