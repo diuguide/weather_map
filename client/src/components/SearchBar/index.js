@@ -57,7 +57,6 @@ function SearchBar({ weatherCall }) {
   const handleLogout = () => {
     dispatch({ type: LOGOUT_SUCCESS });
     alert("Logged out!");
-    window.location.reload();
   };
 
   const [showRegister, setShowRegister] = useState(false);
