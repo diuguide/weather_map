@@ -5,6 +5,7 @@ import { useSelector, shallowEqual } from "react-redux";
 
 const Main = () => {
     const store = useSelector((store) => store, shallowEqual);
+    
     return (
         <>
         {store.searchQuery.data_loaded && (

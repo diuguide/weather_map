@@ -4,7 +4,7 @@ const initialState = {
     recent_search: [],
     search_data: {},
     data_loaded: false,
-    home: ''
+    home: null
 }
 
  const Actions = (state = initialState, action) => {

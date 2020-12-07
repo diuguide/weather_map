@@ -10,8 +10,7 @@ const HomeModal = ({ showHome, handleCloseHome }) => {
   const [home, setHome] = useState("");
 
   const handleChange = (e) => setHome(e.target.value);
-  console.log(home);
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     handleCloseHome();
@@ -31,7 +30,6 @@ const HomeModal = ({ showHome, handleCloseHome }) => {
       )
       .then((response) => {
         if (response.status === 200) {
-          console.log("response post auth user: ", response);
           dispatch({ type: SET_HOME, payload: home})
           setHome('');
           alert("Home set!");

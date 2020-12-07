@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import {
   Button,
@@ -20,11 +20,9 @@ function SearchBar({ weatherCall }) {
   const store = useSelector((store) => store, shallowEqual);
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log("store in searchbar: ", store);
+  
   const [searchQuery, setSearchQuery] = useState("");
   const [recentSearch, setRecentSearch] = useState([]);
-
-  useEffect(() => {});
 
   const handleChange = (e) => {
     const search = e.target.value;
@@ -51,7 +49,6 @@ function SearchBar({ weatherCall }) {
           config
         )
         .then((response) => {
-          console.log("api response PUT updateSearch", response);
           dispatch({ type: RECENT_SEARCH, payload: response.data.recent_search })
         })
         .catch((err) => console.log(err));

@@ -4,9 +4,9 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import Main from "./pages/Main";
 import { Container } from "react-bootstrap";
+import { DATA_LOADED, SEARCH_DATA } from "./actions/types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { DATA_LOADED, SEARCH_DATA } from "./actions/types";
 
 function App() {
   const dispatch = useDispatch();
