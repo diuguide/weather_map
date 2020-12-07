@@ -10,7 +10,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  token: localStorage.getItem("token"),
+  token: null,
   isAuthenticated: null,
   isLoading: false,
   user: null,
@@ -19,7 +19,6 @@ const initialState = {
 const Authorize = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOADING:
-      localStorage.removeItem('token');
       return {
         ...state,
         isLoading: true,
@@ -33,10 +32,10 @@ const Authorize = (state = initialState, action) => {
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         ...action.payload,
+        token: action.payload.token,
         isAuthenticated: true,
         isLoading: false,
       };
@@ -44,7 +43,6 @@ const Authorize = (state = initialState, action) => {
     case LOGIN_FAIL:
     case LOGOUT_SUCCESS:
     case REGISTER_FAIL:
-      localStorage.removeItem("token");
       return {
         ...state,
         token: null,
