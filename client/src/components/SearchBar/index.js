@@ -125,7 +125,7 @@ function SearchBar({ weatherCall }) {
       />
       <LoginModal showLogin={showLogin} handleCloseLogin={handleCloseLogin} />
       {store.auth.isAuthenticated && (
-        <Row className="bg-light mt-2 loggedConsole">
+        <Row className="bg-light mt-2 pb-2 loggedConsole">
           <Col>
             <Row className="pl-4 mt-2 mx-auto">
               <Col>

@@ -4,6 +4,13 @@ const mongoose = require("mongoose");
 const routes = require("./routes/apiSearch");
 const auth = require("./routes/auth");
 
+const proxy = require('http-proxy-middleware')
+
+module.exports = function(app) {
+    // add other server routes to path array
+    app.use(proxy(['/api' ], { target: 'http://localhost:5000' }));
+}
+
 //express middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
