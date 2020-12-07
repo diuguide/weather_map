@@ -28,6 +28,8 @@ router.post("/User", (req, res) => {
           user: {
             id: user.id,
             username: user.username,
+            recent_search: user.recent_search,
+            home: user.home
           },
         });
       });

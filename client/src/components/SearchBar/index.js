@@ -1,18 +1,26 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { Button, Col, Row, Container } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Row,
+  DropdownButton,
+  Dropdown,
+  ButtonGroup,
+} from "react-bootstrap";
 import RegisterModal from "../auth/RegisterModal";
 import LoginModal from "../auth/LoginModal";
+import HomeModal from "../auth/HomeModal";
 import Form from "react-bootstrap/Form";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { LOGOUT_SUCCESS, RECENT_SEARCH } from "../../actions/types";
+import { LOGOUT_SUCCESS, CLEAR_DATA, RECENT_SEARCH } from "../../actions/types";
 import axios from "axios";
 
 function SearchBar({ weatherCall }) {
   const store = useSelector((store) => store, shallowEqual);
   const dispatch = useDispatch();
   const history = useHistory();
-
+  console.log("store in searchbar: ", store);
   const [searchQuery, setSearchQuery] = useState("");
   const [recentSearch, setRecentSearch] = useState([]);
 
@@ -44,18 +52,18 @@ function SearchBar({ weatherCall }) {
         )
         .then((response) => {
           console.log("api response PUT updateSearch", response);
+          dispatch({ type: RECENT_SEARCH, payload: response.data.recent_search })
         })
         .catch((err) => console.log(err));
     }
-
     weatherCall(searchQuery);
-    dispatch({ type: RECENT_SEARCH, recent_search: searchQuery });
     setSearchQuery("");
     history.push("/Main");
   };
 
   const handleLogout = () => {
     dispatch({ type: LOGOUT_SUCCESS });
+    dispatch({ type: CLEAR_DATA });
     alert("Logged out!");
   };
 
@@ -66,6 +74,10 @@ function SearchBar({ weatherCall }) {
   const [showLogin, setShowLogin] = useState(false);
   const handleCloseLogin = () => setShowLogin(false);
   const handleShowLogin = () => setShowLogin(true);
+
+  const [showHome, setShowHome] = useState(false);
+  const handleCloseHome = () => setShowHome(false);
+  const handleShowHome = () => setShowHome(true);
 
   return (
     <>
@@ -122,27 +134,37 @@ function SearchBar({ weatherCall }) {
         showRegister={showRegister}
         handleCloseRegister={handleCloseRegister}
       />
-      <LoginModal showLogin={showLogin} handleCloseLogin={handleCloseLogin} />
+      <LoginModal showLogin={showLogin} handleCloseLogin={handleCloseLogin}  />
+      <HomeModal showHome={showHome} handleCloseHome={handleCloseHome}  />
+
       {store.auth.isAuthenticated && (
         <Row className="bg-light mt-2 pb-2 loggedConsole">
           <Col>
-            <Row className="pl-4 mt-2 mx-auto">
+            <Row className="mt-2 mx-auto">
               <Col>
                 <h6>Hello, {store.auth.user.username}</h6>
               </Col>
             </Row>
-            <Row className="pl-4 mx-auto">
+            <Row className="mx-auto">
               <Col>
-                <Button as="input" type="button" value="Options" />
+                {[DropdownButton].map((DropdownType, idx) => (
+                  <DropdownType
+                    as={ButtonGroup}
+                    key={idx}
+                    id={`dropdown-button-drop-${idx}`}
+                    size="sm"
+                    variant="secondary"
+                    title="Options"
+                  >
+                    <Dropdown.Item onClick={handleShowHome} eventKey="1">Set Home City</Dropdown.Item>
+                    <Dropdown.Divider />
+                    <Dropdown.Item onClick={handleLogout} eventKey="2">
+                      Logout
+                    </Dropdown.Item>
+                  </DropdownType>
+                ))}
               </Col>
-              <Col>
-                  <Button
-                    as="input"
-                    type="button"
-                    value="Logout"
-                    onClick={handleLogout}
-                  />
-              </Col>
+              <Col></Col>
             </Row>
           </Col>
         </Row>

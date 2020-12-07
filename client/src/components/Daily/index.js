@@ -1,4 +1,4 @@
-import { Row, Col, Table, Container } from "react-bootstrap";
+import { Row, Col, Table } from "react-bootstrap";
 import { useSelector, shallowEqual } from "react-redux";
 import * as moment from "moment";
 const Daily = () => {

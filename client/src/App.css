@@ -1,7 +1,7 @@
 
 .loggedConsole {
   border: 1px solid lightgrey;
-  color: darkgray;
+  color: rgb(19, 2, 2);
   border-radius: 10px;
   width: 375px;
 }

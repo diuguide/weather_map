@@ -1,4 +1,4 @@
-import { Row, Col, Card, Container } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import { useSelector, shallowEqual } from "react-redux";
 
 const Results = () => {

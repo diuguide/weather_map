@@ -2,7 +2,7 @@ import { Button, Modal, Form, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { LOGIN_SUCCESS, USER_LOADING } from "../../actions/types";
+import { LOGIN_SUCCESS, USER_LOADING, RECENT_SEARCH, SET_HOME } from "../../actions/types";
 
 const LoginModal = ({ showLogin, handleCloseLogin }) => {
   const dispatch = useDispatch();
@@ -20,7 +20,6 @@ const LoginModal = ({ showLogin, handleCloseLogin }) => {
     event.preventDefault();
     handleCloseLogin();
     dispatch({ type: USER_LOADING });
-    
     axios
       .post("/auth/User", {
         username: loginCreds.username,
@@ -28,7 +27,10 @@ const LoginModal = ({ showLogin, handleCloseLogin }) => {
       })
       .then((response) => {
         if (response.status === 200) {
+          console.log('response post auth user: ', response);
           dispatch({ type: LOGIN_SUCCESS, payload: response.data });
+          dispatch({ type: RECENT_SEARCH, payload: response.data.user.recent_search });
+          dispatch({ type: SET_HOME, payload: response.data.user.home})
           alert("Logged in!");
         }
       })
