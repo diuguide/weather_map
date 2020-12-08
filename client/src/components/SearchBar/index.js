@@ -23,6 +23,7 @@ function SearchBar({ weatherCall }) {
   
   const [searchQuery, setSearchQuery] = useState("");
   const [recentSearch, setRecentSearch] = useState([]);
+  const [searchTitle, setSearchTitle] = useState("");
 
   const handleChange = (e) => {
     const search = e.target.value;
@@ -54,8 +55,9 @@ function SearchBar({ weatherCall }) {
         .catch((err) => console.log(err));
     }
     weatherCall(searchQuery);
+    setSearchTitle(searchQuery);
     setSearchQuery("");
-    history.push("/Main");
+    history.push("/");
   };
 
   const handleLogout = () => {
@@ -75,7 +77,7 @@ function SearchBar({ weatherCall }) {
   const [showHome, setShowHome] = useState(false);
   const handleCloseHome = () => setShowHome(false);
   const handleShowHome = () => setShowHome(true);
-
+console.log(store)
   return (
     <>
       <Row className="bg-light pt-2 pb-3 searchBar">
@@ -92,8 +94,8 @@ function SearchBar({ weatherCall }) {
               </Form.Group>
             </Col>
           </Row>
-          <Row className="mx-auto">
-            <Col>
+          <Row>
+            <Col className="">
               <Button
                 id="searchBtn"
                 as="input"
@@ -102,7 +104,7 @@ function SearchBar({ weatherCall }) {
                 onClick={handleSubmit}
               />
             </Col>
-            <Col>
+            <Col className="">
               {!store.auth.isAuthenticated && (
                 <Button
                   id="signupBtn"
@@ -137,12 +139,12 @@ function SearchBar({ weatherCall }) {
       {store.auth.isAuthenticated && (
         <Row className="bg-light mt-2 pb-2 loggedConsole">
           <Col>
-            <Row className="mt-2 mx-auto">
+            <Row className="mt-2">
               <Col>
-                <h6>Hello, {store.auth.user.username}</h6>
+                <h5>Hello, {store.auth.user.username}</h5>
               </Col>
             </Row>
-            <Row className="mx-auto">
+            <Row>
               <Col>
                 {[DropdownButton].map((DropdownType, idx) => (
                   <DropdownType
@@ -166,6 +168,15 @@ function SearchBar({ weatherCall }) {
           </Col>
         </Row>
       )}
+      {store.searchQuery.data_loaded &&
+      <Row className="mt-2 bg-light cityName">
+        <Col>
+        <h1>{searchTitle}</h1>
+        <h6>Latitude: {store.searchQuery.search_data.data.lat}</h6>
+        <h6>Longitude: {store.searchQuery.search_data.data.lon}</h6>
+        </Col>
+      </Row>
+      }
     </>
   );
 }

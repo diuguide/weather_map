@@ -7,6 +7,12 @@
   border-radius: 10px;
   width: 375px;
 }
+.cityName {
+  border: 1px solid lightgrey;
+  color: rgb(19, 2, 2);
+  border-radius: 10px;
+  width: 375px;
+}
 .results {
   border: 1px solid lightgrey;
   border-radius: 10px;

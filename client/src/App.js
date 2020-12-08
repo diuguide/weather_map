@@ -39,7 +39,7 @@ function App() {
         <Banner />
         <SearchBar weatherCall={weatherCall} />
         <Switch>
-          <Route path="/Main">
+          <Route path="/">
             <Main />
           </Route>
         </Switch>

@@ -33,7 +33,7 @@ const LoginModal = ({ showLogin, handleCloseLogin }) => {
           dispatch({ type: LOGIN_SUCCESS, payload: response.data });
           dispatch({ type: RECENT_SEARCH, payload: response.data.user.recent_search });
           dispatch({ type: SET_HOME, payload: response.data.user.home})
-          history.push('/Main');
+          history.push('/');
           alert("Logged in!");
         }
       })
