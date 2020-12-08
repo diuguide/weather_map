@@ -1,6 +1,6 @@
 const Banner = () => {
     return(
-        <img alt="bannerimage" src="/bannerHome.png"></img>
+        <img className="bannerHome" alt="bannerimage" src="/bannerHome.png"></img>
     )
 }
 

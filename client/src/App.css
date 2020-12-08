@@ -1,4 +1,6 @@
-
+.bannerHome {
+  width: 350px;
+}
 .loggedConsole {
   border: 1px solid lightgrey;
   color: rgb(19, 2, 2);
