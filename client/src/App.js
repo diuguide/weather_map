@@ -1,4 +1,5 @@
 import SearchBar from "./components/SearchBar";
+import Banner from "./components/Banner";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -35,6 +36,7 @@ function App() {
   return (
     <Router>
       <Container className="justify-content-center">
+        <Banner />
         <SearchBar weatherCall={weatherCall} />
         <Switch>
           <Route path="/Main">
