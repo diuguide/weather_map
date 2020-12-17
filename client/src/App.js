@@ -1,6 +1,5 @@
 import SearchBar from "./components/SearchBar";
 import Banner from "./components/Banner";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import Main from "./pages/Main";
@@ -34,17 +33,11 @@ function App() {
       .catch((err) => console.log(err));
   };
   return (
-    <Router>
-      <Container className="justify-content-center">
-        <Banner />
-        <SearchBar weatherCall={weatherCall} />
-        <Switch>
-          <Route path="/">
-            <Main />
-          </Route>
-        </Switch>
-      </Container>
-    </Router>
+    <Container className="justify-content-center">
+      <Banner />
+      <SearchBar weatherCall={weatherCall} />
+      <Main />
+    </Container>
   );
 }
 
