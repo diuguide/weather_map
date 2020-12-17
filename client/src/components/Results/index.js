@@ -1,10 +1,12 @@
+import { useEffect } from 'react';
 import { Row, Col, Card } from "react-bootstrap";
 import { useSelector, shallowEqual } from "react-redux";
 
-const Results = () => {
+const Results = ({ weatherCall }) => {
   const store = useSelector((store) => store, shallowEqual);
   const dataSet = store.searchQuery.search_data.data;
   const imageIcon = `/icons/${dataSet.current.weather[0].icon}.png`;
+  console.log('store: ', store)
 
   return (
     <Row className="bg-light mt-2 pb-3 results">

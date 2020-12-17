@@ -6,7 +6,7 @@ import { LOGIN_SUCCESS, USER_LOADING, RECENT_SEARCH, SET_HOME } from "../../acti
 import { useHistory } from "react-router-dom";
 
 
-const LoginModal = ({ showLogin, handleCloseLogin }) => {
+const LoginModal = ({ showLogin, handleCloseLogin, weatherCall }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [loginCreds, setLoginCreds] = useState({
@@ -33,6 +33,7 @@ const LoginModal = ({ showLogin, handleCloseLogin }) => {
           dispatch({ type: LOGIN_SUCCESS, payload: response.data });
           dispatch({ type: RECENT_SEARCH, payload: response.data.user.recent_search });
           dispatch({ type: SET_HOME, payload: response.data.user.home})
+          weatherCall(response.data.user.home);
           setLoginCreds({
             username: "",
             password:""

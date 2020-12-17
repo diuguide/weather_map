@@ -4,7 +4,7 @@ import axios from "axios";
 import { SET_HOME } from "../../actions/types";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
 
-const HomeModal = ({ showHome, handleCloseHome }) => {
+const HomeModal = ({ showHome, handleCloseHome, weatherCall }) => {
   const store = useSelector((store) => store, shallowEqual);
   const dispatch = useDispatch();
   const [home, setHome] = useState("");
@@ -29,8 +29,10 @@ const HomeModal = ({ showHome, handleCloseHome }) => {
         config
       )
       .then((response) => {
+        console.log('responsePut home modal: ', response)
         if (response.status === 200) {
           dispatch({ type: SET_HOME, payload: home})
+          weatherCall(response.data.home);
           setHome('');
           alert("Home set!");
         }

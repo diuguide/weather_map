@@ -1,5 +1,5 @@
-import SearchBar from "./components/SearchBar";
 import Banner from "./components/Banner";
+import { useState } from 'react';
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import Main from "./pages/Main";
@@ -7,9 +7,12 @@ import { Container } from "react-bootstrap";
 import { DATA_LOADED, SEARCH_DATA } from "./actions/types";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
+
+  const [searchTitle, setSearchTitle] = useState("");
 
   const weatherCall = (searchQuery) => {
     const APIkey =
@@ -19,6 +22,8 @@ function App() {
         `https://api.openweathermap.org/data/2.5/weather?q=${searchQuery}&id=524901&appid=${APIkey}&units=imperial`
       )
       .then((response) => {
+        console.log('response first api call: ', response)
+        setSearchTitle(response.data.name)
         const lat = response.data.coord.lat;
         const lon = response.data.coord.lon;
         axios
@@ -33,11 +38,16 @@ function App() {
       .catch((err) => console.log(err));
   };
   return (
-    <Container className="justify-content-center">
-      <Banner />
-      <SearchBar weatherCall={weatherCall} />
-      <Main />
-    </Container>
+    <Router>
+      <Container className="justify-content-center">
+        <Banner />
+        <Switch>
+          <Route path="/">
+            <Main searchTitle={searchTitle} weatherCall={weatherCall} />
+          </Route>
+        </Switch>
+      </Container>
+    </Router>
   );
 }
 
