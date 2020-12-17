@@ -53,6 +53,10 @@ const RegisterModal = ({ showRegister, handleCloseRegister, weatherCall }) => {
   return (
     <Modal className="" show={showRegister} onHide={handleCloseRegister}>
       <Form className="p-4 bg-dark">
+        <Form.Text className="mb-1 text-light">
+          Your username can be whatever you want, an email, your name, or a
+          screen name
+        </Form.Text>
         <Form.Group>
           <Form.Control
             type="username"
@@ -63,9 +67,9 @@ const RegisterModal = ({ showRegister, handleCloseRegister, weatherCall }) => {
             onChange={handleChange}
           />
         </Form.Group>
-        <Form.Text className="mb-3 text-light">
-          Your username can be whatever you want, an email, your name, or a
-          screen name
+        <Form.Text className="mb-1 text-light">
+          Your password should NOT be a password you use for anything important,
+          just something you can remember for this site
         </Form.Text>
         <Form.Group>
           <Form.Control
@@ -77,12 +81,8 @@ const RegisterModal = ({ showRegister, handleCloseRegister, weatherCall }) => {
             onChange={handleChange}
           />
         </Form.Group>
-        <Form.Text className="mb-3 text-light">
-          Your password should NOT be a password you use for anything important,
-          just something you can remember for this site
-        </Form.Text>
-        <Form.Text className="mb-3 text-light">
-          DO NOT USE IMPORTANT PASSWORDS FOR THIS LOGIN
+        <Form.Text className="mb-1 text-light">
+          Please confirm your password
         </Form.Text>
         <Form.Group>
           <Form.Control
@@ -94,8 +94,8 @@ const RegisterModal = ({ showRegister, handleCloseRegister, weatherCall }) => {
             onChange={handleChange}
           />
         </Form.Group>
-        <Form.Text className="mt-3 text-light">
-          Please confirm your password
+        <Form.Text className="mb-1 text-light">
+          Please enter your Hometown
         </Form.Text>
         <Form.Group>
           <Form.Control
@@ -107,9 +107,6 @@ const RegisterModal = ({ showRegister, handleCloseRegister, weatherCall }) => {
             onChange={handleChange}
           />
         </Form.Group>
-        <Form.Text className="mt-3 text-light">
-          Please enter your Hometown (optional)
-        </Form.Text>
         <Row>
           <Col className="mt-2 d-flex">
             <Button variant="primary" type="submit" onClick={handleSubmit}>
