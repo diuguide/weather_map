@@ -88,7 +88,7 @@ function SearchBar({
               <Button
                 id="searchBtn"
                 as="input"
-                type="button"
+                type="submit"
                 value="Search"
                 onClick={handleSubmit}
               />
@@ -127,9 +127,6 @@ function SearchBar({
                 <h5>Hello, {store.auth.user.username}</h5>
                 <h6>Hometown: {store.searchQuery.home || store.auth.user.home}</h6>
               </Col>
-             
-              
-              
             </Row>
             <Row>
               <Col>
