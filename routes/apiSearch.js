@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
 
 // Create New User
 router.post("/User", (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, home } = req.body;
   if (!username || !password) {
     return res.status(400).json({ msg: "Please Enter username and password" });
   }
@@ -25,6 +25,7 @@ router.post("/User", (req, res) => {
     const newUser = new User({
       username,
       password,
+      home,
     });
 
     // create salt & hash
@@ -44,6 +45,7 @@ router.post("/User", (req, res) => {
                 user: {
                   id: user.id,
                   username: user.username,
+                  home: user.home
                 },
               });
             }

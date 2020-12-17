@@ -123,7 +123,7 @@ function SearchBar({
                 <h5>Hello, {store.auth.user.username}</h5>
               </Col>
               <Col>
-              <h6>Hometown: {store.searchQuery.home}</h6>
+              <h6>Hometown: {store.searchQuery.home || store.auth.user.home}</h6>
               </Col>
             </Row>
             <Row>

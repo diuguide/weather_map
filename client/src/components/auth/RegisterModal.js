@@ -4,13 +4,14 @@ import { useState } from "react";
 import { REGISTER_SUCCESS, USER_LOADING } from "../../actions/types";
 import { useDispatch } from "react-redux";
 
-const RegisterModal = ({ showRegister, handleCloseRegister }) => {
+const RegisterModal = ({ showRegister, handleCloseRegister, weatherCall }) => {
   const dispatch = useDispatch();
 
   const [loginCreds, setLoginCreds] = useState({
     username: "",
     password: "",
     passwordConfirm: "",
+    home: "",
   });
 
   const handleChange = (event) => {
@@ -27,6 +28,7 @@ const RegisterModal = ({ showRegister, handleCloseRegister }) => {
         .post("/api/User", {
           username: loginCreds.username,
           password: loginCreds.password,
+          home: loginCreds.home,
         })
         .then((response) => {
           console.log("response login: ", response);
@@ -36,13 +38,15 @@ const RegisterModal = ({ showRegister, handleCloseRegister }) => {
             setLoginCreds({
               username: "",
               password: "",
-              passwordConfirm: ""
+              passwordConfirm: "",
+              home: ""
             });
+            weatherCall(response.data.user.home);
           }
         })
         .catch((err) => console.log(err));
     } else {
-      alert('Passwords should match!');
+      alert("Passwords should match!");
     }
   };
 
@@ -92,6 +96,19 @@ const RegisterModal = ({ showRegister, handleCloseRegister }) => {
         </Form.Group>
         <Form.Text className="mt-3 text-light">
           Please confirm your password
+        </Form.Text>
+        <Form.Group>
+          <Form.Control
+            type="input"
+            name="home"
+            id="inputHome"
+            defaultValue={loginCreds.home}
+            placeholder="Hometown"
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Text className="mt-3 text-light">
+          Please enter your Hometown (optional)
         </Form.Text>
         <Row>
           <Col className="mt-2 d-flex">
