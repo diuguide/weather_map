@@ -63,6 +63,10 @@ function SearchBar({
     setSearchQuery("");
   };
 
+  const homeBtn = () => {
+    weatherCall(store.auth.user.home || store.searchQuery.home)
+  }
+
   return (
     <>
       <Row className="bg-light pt-2 pb-3 searchBar">
@@ -121,10 +125,11 @@ function SearchBar({
             <Row className="mt-2">
               <Col>
                 <h5>Hello, {store.auth.user.username}</h5>
+                <h6>Hometown: {store.searchQuery.home || store.auth.user.home}</h6>
               </Col>
-              <Col>
-              <h6>Hometown: {store.searchQuery.home || store.auth.user.home}</h6>
-              </Col>
+             
+              
+              
             </Row>
             <Row>
               <Col>
@@ -137,6 +142,9 @@ function SearchBar({
                     variant="secondary"
                     title="Options"
                   >
+                    <Dropdown.Item onClick={homeBtn} eventKey="3">
+                      Go to Hometown
+                    </Dropdown.Item>
                     <Dropdown.Item onClick={handleShowHome} eventKey="1">
                       Set Home City
                     </Dropdown.Item>

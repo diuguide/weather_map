@@ -63,7 +63,7 @@ const RegisterModal = ({ showRegister, handleCloseRegister, weatherCall }) => {
             name="username"
             id="inputEmail"
             defaultValue={loginCreds.username}
-            placeholder="Enter email"
+            placeholder="Enter username"
             onChange={handleChange}
           />
         </Form.Group>
