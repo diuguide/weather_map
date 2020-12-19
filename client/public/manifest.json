@@ -1,6 +1,10 @@
 {
   "short_name": "weathermap",
   "name": "Rain or Shine 919",
+  "description" : "Get the latest weather forecast on desktop or mobile!",
+  "keywords" : "Everett Diuguid, Everett, Diuguid, 919, weather, forecast, local weather, everett diuguid, everett, diuguid, Rain or Shine 919",
+  "author" : "Everett Diuguid",
+  "google-site-verification" : "oJecBJvxWgoeycvAua1rMEFILIE6F6onzDX6XtKEiKo",
   "icons": [
     {
       "src": "favicon.ico",

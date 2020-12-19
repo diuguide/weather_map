@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
 import { Row, Col, Card } from "react-bootstrap";
 import { useSelector, shallowEqual } from "react-redux";
 
-const Results = ({ weatherCall }) => {
+const Results = () => {
   const store = useSelector((store) => store, shallowEqual);
   const dataSet = store.searchQuery.search_data.data;
   const imageIcon = `/icons/${dataSet.current.weather[0].icon}.png`;
