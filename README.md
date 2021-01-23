@@ -32,7 +32,7 @@ To use the app, navigate to <https:rain-or-shine919.herokuapp.com> please follow
 
 1. To change your hometown, click the ```Options``` drop down and then ```Set Home City```.  This will update your hometown and display the most recent data available.
 
-1. To return back to the data for your hometown, click the ```Options``` dropdown and select ```Go to Hometown```.  This will display the most recent data for your saved hometown.
+1. To view the weather data for your hometown, click the ```Options``` dropdown and select ```Go to Hometown```.  This will display the most recent data for your saved hometown.
 
 
 [back to Table of Contents](#table-of-contents)
