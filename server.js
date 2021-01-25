@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'staging')
   app.use(express.static('client/build'));
 }
 
-// connect database
+// connect to mongodb database
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/weather_map", {
     useNewUrlParser: true,
