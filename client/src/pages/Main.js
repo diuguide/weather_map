@@ -27,7 +27,7 @@ const Main = ({ weatherCall, searchTitle }) => {
     const handleLogout = () => {
         dispatch({ type: LOGOUT_SUCCESS });
         dispatch({ type: CLEAR_DATA });
-        alert("Logged out!");
+        alert("You are now logged out!");
       };
 
     return (
