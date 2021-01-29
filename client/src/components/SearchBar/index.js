@@ -78,7 +78,7 @@ function SearchBar({
                   onChange={handleChange}
                   value={searchQuery}
                   type="search"
-                  placeholder="Enter City"
+                  placeholder="Search"
                 />
               </Form.Group>
             </Col>
